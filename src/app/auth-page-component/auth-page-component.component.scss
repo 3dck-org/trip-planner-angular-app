@@ -1,0 +1,35 @@
+.container {
+  margin: 0;
+  padding: 0;
+  grid-auto-rows: 75vh;
+  width: 100vw;
+  max-width: 100%;
+  height: 94vh;
+  overflow: auto;
+  max-height: 100%;
+  display: grid;
+  grid-template-areas:
+    ". . main . .";
+
+  .image {
+    background: url("https://static.vecteezy.com/system/resources/previews/003/183/935/large_2x/isometric-set-of-blocks-module-of-areas-of-the-city-construction-vector.jpg") center 0 no-repeat;
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+    position: fixed;
+    margin-top: 2rem;
+    width: 100vw;
+    height: calc(91vh - 1.2rem);
+  }
+
+  .component {
+    align-self: center;
+    justify-self: center;
+    grid-area: main;
+    max-width: calc(60vw - 1rem);
+  }
+
+
+}
