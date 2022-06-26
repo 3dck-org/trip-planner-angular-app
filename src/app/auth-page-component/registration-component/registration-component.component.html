@@ -1,0 +1,19 @@
+<mat-card>
+  <mat-card-title>Sign Up</mat-card-title>
+  <form [formGroup]="fg" (submit)="register()">
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput type="text" formControlName="username"/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password"/>
+    </mat-form-field>
+    <button mat-flat-button color="primary" type="submit">
+      Submit
+    </button>
+    <button mat-flat-button color="primary" (click)="authState.updateAuthTypeTab('login');spinner.show();">
+      Login
+    </button>
+  </form>
+</mat-card>
