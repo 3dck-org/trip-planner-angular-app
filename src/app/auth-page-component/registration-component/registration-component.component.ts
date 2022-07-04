@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthStateService} from "../services/auth-state.service";
 import {LoadingStateService} from "../services/loading-state.service";
+import * as AuthActions from "../../state/auth/auth.actions";
+import {Store} from "@ngrx/store";
 
 @Component({
   selector: 'registration-component',
@@ -13,11 +15,14 @@ export class RegistrationComponentComponent implements OnInit {
   fg: FormGroup;
 
   constructor(private fb: FormBuilder, public authState: AuthStateService,
-              public spinner: LoadingStateService) {
+              public spinner: LoadingStateService, private store: Store) {
     spinner.hide();
     this.fg = this.fb.group({
-      username: [''],
-      password: [''],
+      name: ['', Validators.required],
+      login: ['', Validators.required],
+      surname: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
     })
   }
 
@@ -26,7 +31,14 @@ export class RegistrationComponentComponent implements OnInit {
   }
 
   register() {
-
+    const credentials = {
+      email: this.fg.get('email')?.value,
+      password: this.fg.get('password')?.value,
+      name: this.fg.get('name')?.value,
+      surname: this.fg.get('surname')?.value,
+      login: this.fg.get('login')?.value,
+    }
+    this.store.dispatch(AuthActions.registerRequest({credentials}))
   }
 
 }
