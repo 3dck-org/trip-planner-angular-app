@@ -1,15 +1,16 @@
 <mat-card>
   <mat-card-title>Sign In</mat-card-title>
-  <form [formGroup]="fg" (ngSubmit)="login()">
+  <form [formGroup]="fg">
     <mat-form-field>
-      <mat-label>Username</mat-label>
-      <input matInput formControlName="username"/>
+      <mat-label>email</mat-label>
+      <input matInput formControlName="email"/>
+
     </mat-form-field>
     <mat-form-field>
       <mat-label>Password</mat-label>
       <input matInput type="password" formControlName="password"/>
     </mat-form-field>
-    <button mat-flat-button color="primary" type="submit">
+    <button mat-flat-button color="primary" [disabled]="!fg.valid" (click)="login()">
       Submit
     </button>
     <button mat-flat-button color="primary" (click)="authState.updateAuthTypeTab('registration'); spinner.show();">

@@ -18,13 +18,22 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {OverlayModule} from "@angular/cdk/overlay";
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
+import {authReducer} from "./state/auth/auth.reducer";
+import {AuthEffects} from "./state/auth/auth.effects";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {AuthInterceptor} from "./auth-page-component/services/auth.interceptor";
+import {UserProfileComponent} from './user-profile/user-profile.component';
+import {AuthGuard} from "./auth-page-component/services/auth.guard";
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthPageComponentComponent,
     RegistrationComponentComponent,
-    LoginComponentComponent
+    LoginComponentComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -38,9 +47,13 @@ import {OverlayModule} from "@angular/cdk/overlay";
     ReactiveFormsModule,
     MatButtonModule,
     MatIconModule,
-    OverlayModule
+    HttpClientModule,
+    OverlayModule,
+//@ts-ignore
+    StoreModule.forRoot({auth: authReducer}, {}),
+    EffectsModule.forRoot([AuthEffects])
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule {
