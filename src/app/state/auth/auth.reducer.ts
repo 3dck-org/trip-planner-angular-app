@@ -1,6 +1,10 @@
-import {ActionCreator, ActionReducer, createReducer, on} from "@ngrx/store";
-import {loginFailure, loginSuccess, registerFailure, registerSuccess} from "./auth.actions";
-
+import { ActionCreator, ActionReducer, createReducer, on } from '@ngrx/store';
+import {
+  loginFailure,
+  loginSuccess,
+  registerFailure,
+  registerSuccess,
+} from './auth.actions';
 
 export interface State {
   loginError: string | null;
@@ -18,11 +22,11 @@ export const initialState: State = {
   expires_in: null,
   refresh_token: null,
   created_at: null,
-}
+};
 
 const _authReducer = createReducer(
   initialState,
-  on(loginSuccess, (state, {loginSuccessResponse}) => {
+  on(loginSuccess, (state, { loginSuccessResponse }) => {
     return {
       ...state,
       access_token: loginSuccessResponse.access_token,
@@ -32,7 +36,7 @@ const _authReducer = createReducer(
       created_at: loginSuccessResponse.created_at,
     };
   }),
-  on(loginFailure, (state, {error}) => {
+  on(loginFailure, (state, { error }) => {
     return {
       ...state,
       loginError: error,
@@ -43,7 +47,7 @@ const _authReducer = createReducer(
       created_at: null,
     };
   }),
-  on(registerSuccess,(state, {registerSuccessResponse}) => {
+  on(registerSuccess, (state, { registerSuccessResponse }) => {
     return {
       ...state,
       access_token: registerSuccessResponse.access_token,
@@ -53,7 +57,7 @@ const _authReducer = createReducer(
       created_at: registerSuccessResponse.created_at,
     };
   }),
-  on(registerFailure, (state, {error}) => {
+  on(registerFailure, (state, { error }) => {
     return {
       ...state,
       loginError: error,
@@ -63,7 +67,7 @@ const _authReducer = createReducer(
       refresh_token: null,
       created_at: null,
     };
-  }),
+  })
 );
 
 //@ts-ignore
