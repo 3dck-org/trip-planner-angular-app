@@ -1,7 +1,16 @@
 <mat-toolbar color="primary">
-  <div class="logotext">
-    <mat-icon class="logo">map</mat-icon>
-    <div class="title">Trip Planner</div>
-  </div>
+  <mat-toolbar-row class="header">
+    <a mat-icon-button class="logo"><mat-icon>map</mat-icon></a>
+    <a mat-button class="title disable-text-selection">Trip Planner</a>
+    <div class="right-part" *ngIf="router.url!='/auth'">
+      <a mat-icon-button class="account"><mat-icon>face</mat-icon></a>
+      <div class="logout">
+        <a mat-icon-button>
+          <mat-icon class="logout-icon">logout</mat-icon>
+        </a>
+      </div>
+    </div>
+  </mat-toolbar-row>
 </mat-toolbar>
 <router-outlet></router-outlet>
+<footer></footer>
