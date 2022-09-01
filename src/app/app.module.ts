@@ -22,7 +22,12 @@ import { authReducer } from './state/auth/auth.reducer';
 import { AuthEffects } from './state/auth/auth.effects';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './auth-page-component/services/auth.interceptor';
-import { UserProfileComponent } from './user-profile/user-profile.component';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { DashboardMapComponent } from './dashboard-map/dashboard-map/dashboard-map.component';
+import { DashboardTripsComponent } from './dashboard-trips/dashboard-trips/dashboard-trips.component';
+import { DashboardSearchComponent } from './dashboard-search/dashboard-search/dashboard-search.component';
+import { UserProfileComponent } from './user-profile/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +36,10 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     RegistrationComponentComponent,
     LoginComponentComponent,
     UserProfileComponent,
+    DashboardComponent,
+    DashboardMapComponent,
+    DashboardTripsComponent,
+    DashboardSearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +58,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     //@ts-ignore
     StoreModule.forRoot({ auth: authReducer }, {}),
     EffectsModule.forRoot([AuthEffects]),
+    GoogleMapsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

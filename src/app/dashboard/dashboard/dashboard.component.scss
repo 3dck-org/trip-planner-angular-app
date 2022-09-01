@@ -1,0 +1,44 @@
+* {
+  box-sizing: border-box;
+}
+.container {
+  display: flex;
+  min-height: 95vh;
+  flex-direction: column;
+  margin: 0;
+}
+
+#dashboard {
+  display: flex;
+  flex: 1;
+}
+#dashboard > #map {
+  margin: 1rem 1rem 1.5rem 0.5rem;
+  flex: 1;
+  order: 2;
+}
+#dashboard > #routes {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 20vw;
+}
+#routes > tp-dashboard-search {
+  flex: 1;
+  background-color: #3f51b5;
+}
+
+#routes > tp-dashboard-trips {
+  flex: 12;
+  background: beige;
+}
+#dashboard > #routes {
+  margin: 1rem 0.5rem 1.5rem 1rem;
+  order: 1;
+}
+header,
+footer,
+article,
+nav,
+aside {
+  padding: 1em;
+}
