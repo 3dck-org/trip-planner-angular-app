@@ -1,1 +1,6 @@
-<p>dashboard-trips works!</p>
+<div class="container">
+  <div *ngFor="let trip of trips$ | async; index as i">
+    <tp-dashboard-trip-element [trip]="trip"></tp-dashboard-trip-element>
+    <br />
+  </div>
+</div>

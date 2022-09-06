@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthStateService } from '../services/auth-state.service';
-import { LoadingStateService } from '../services/loading-state.service';
-import * as AuthActions from '../../state/auth/auth.actions';
+import { LoadingStateService } from '../../core/services/loading-state.service';
+import * as AuthActions from '../services/auth.actions';
 import { Store } from '@ngrx/store';
 
 @Component({

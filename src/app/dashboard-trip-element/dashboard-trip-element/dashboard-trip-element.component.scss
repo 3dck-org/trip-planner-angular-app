@@ -1,0 +1,27 @@
+.card {
+  width: 100%;
+  min-height: 7rem;
+}
+
+.container {
+}
+
+.image {
+  width: 6rem;
+  height: 6rem;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+#categories {
+  display: flex;
+}
+
+.title {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

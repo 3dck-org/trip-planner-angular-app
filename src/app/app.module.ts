@@ -18,8 +18,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { authReducer } from './state/auth/auth.reducer';
-import { AuthEffects } from './state/auth/auth.effects';
+import { authReducer } from './auth-page-component/services/auth.reducer';
+import { tripReducer } from './dashboard-trips/services/trip.reducer';
+import { AuthEffects } from './auth-page-component/services/auth.effects';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './auth-page-component/services/auth.interceptor';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
@@ -28,6 +29,9 @@ import { DashboardMapComponent } from './dashboard-map/dashboard-map/dashboard-m
 import { DashboardTripsComponent } from './dashboard-trips/dashboard-trips/dashboard-trips.component';
 import { DashboardSearchComponent } from './dashboard-search/dashboard-search/dashboard-search.component';
 import { UserProfileComponent } from './user-profile/user-profile/user-profile.component';
+import { DashboardTripElementComponent } from './dashboard-trip-element/dashboard-trip-element/dashboard-trip-element.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { TripEffects } from './dashboard-trips/services/trip.effects';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,7 @@ import { UserProfileComponent } from './user-profile/user-profile/user-profile.c
     DashboardMapComponent,
     DashboardTripsComponent,
     DashboardSearchComponent,
+    DashboardTripElementComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,9 +61,10 @@ import { UserProfileComponent } from './user-profile/user-profile/user-profile.c
     HttpClientModule,
     OverlayModule,
     //@ts-ignore
-    StoreModule.forRoot({ auth: authReducer }, {}),
-    EffectsModule.forRoot([AuthEffects]),
+    StoreModule.forRoot({ auth: authReducer, trips: tripReducer }, {}),
+    EffectsModule.forRoot([AuthEffects, TripEffects]),
     GoogleMapsModule,
+    MatExpansionModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
