@@ -1,11 +1,43 @@
 .logotext {
   margin-left: 2.5rem;
+}
+
+.logo {
+  transform: scale(1.5);
+}
+
+.title {
+
+  font-size: 1.5rem;
+}
+
+.disable-text-selection {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.header {
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logout {
+  transform: scale(1.5);
+}
+
+.logout-icon {
+}
+
+.part {
   display: flex;
 }
-.logo {
-  transform: scale(2);
-}
-.title {
-  margin-left: 1rem;
-  font-size: 2rem;
+
+.account {
+  transform: scale(1.5);
+  margin-right: 1rem;
 }

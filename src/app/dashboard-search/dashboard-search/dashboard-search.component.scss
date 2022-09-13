@@ -1,0 +1,27 @@
+::ng-deep#search {
+  width: 95%;
+  margin: 0 1rem 0 1rem;
+  height: 60%;
+  font-size: 1.3rem;
+  color: grey;
+}
+
+#categories {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.cat-relax {
+  color: green;
+}
+.cat-museums {
+  color: mediumslateblue;
+}
+.cat-drink {
+  color: cornflowerblue;
+}
+.cat-restaurant {
+  color: tomato;
+}

@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import * as AuthActions from '../../state/auth/auth.actions';
+import * as AuthActions from './auth.actions';
 import { catchError, exhaustMap, map, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import * as moment from 'moment';
+import { AuthService } from './auth.service';
+import { LoadingStateService } from '../../core/services/loading-state.service';
 
 @Injectable()
 export class AuthEffects {
   loginRequest$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.loginRequest),
+      tap(() => this.spinner.show()),
       exhaustMap((action) =>
         this.authService
           .login$(action.credentials.email, action.credentials.password)
@@ -20,7 +21,8 @@ export class AuthEffects {
             ),
             catchError((error) => of(AuthActions.loginFailure({ error })))
           )
-      )
+      ),
+      tap(() => this.spinner.hide())
     )
   );
 
@@ -103,6 +105,7 @@ export class AuthEffects {
   constructor(
     private actions$: Actions,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private spinner: LoadingStateService
   ) {}
 }

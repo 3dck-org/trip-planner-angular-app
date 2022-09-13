@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthStateService } from '../services/auth-state.service';
-import { LoadingStateService } from '../services/loading-state.service';
+import { LoadingStateService } from '../../core/services/loading-state.service';
 import { Store } from '@ngrx/store';
-import * as AuthActions from '../../state/auth/auth.actions';
+import * as AuthActions from '../services/auth.actions';
 
 @Component({
   selector: 'login-component',
