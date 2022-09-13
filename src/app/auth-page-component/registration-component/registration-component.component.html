@@ -3,29 +3,37 @@
   <form [formGroup]="fg">
     <mat-form-field>
       <mat-label>Name</mat-label>
-      <input matInput type="text" formControlName="name"/>
+      <input matInput type="text" formControlName="name" />
     </mat-form-field>
     <mat-form-field>
       <mat-label>Surname</mat-label>
-      <input matInput type="text" formControlName="surname"/>
+      <input matInput type="text" formControlName="surname" />
     </mat-form-field>
     <mat-form-field>
       <mat-label>Login</mat-label>
-      <input matInput type="text" formControlName="login"/>
+      <input matInput type="text" formControlName="login" />
     </mat-form-field>
     <mat-form-field>
       <mat-label>Email</mat-label>
-      <input matInput type="text" formControlName="email"/>
+      <input matInput type="text" formControlName="email" />
     </mat-form-field>
     <mat-form-field>
       <mat-label>Password</mat-label>
-      <input matInput type="password" formControlName="password"/>
+      <input matInput type="password" formControlName="password" />
     </mat-form-field>
-    <button mat-flat-button color="primary" [disabled]="!fg.valid" (click)="register()">
+    <button
+      mat-flat-button
+      color="primary"
+      [disabled]="!fg.valid"
+      (click)="register()"
+    >
       Submit
     </button>
-    <button mat-flat-button color="primary"
-            (click)="authState.updateAuthTypeTab('login');spinner.show();">
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="authState.updateAuthTypeTab('login'); spinner.show()"
+    >
       Login
     </button>
   </form>

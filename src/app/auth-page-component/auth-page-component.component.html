@@ -2,8 +2,11 @@
   <div class="image"></div>
 
   <div class="component">
-    <registration-component *ngIf="authStore.authTypeTab==='registration'"></registration-component>
-    <login-component *ngIf="authStore.authTypeTab==='login'"></login-component>
+    <registration-component
+      *ngIf="authStore.authTypeTab === 'registration'"
+    ></registration-component>
+    <login-component
+      *ngIf="authStore.authTypeTab === 'login'"
+    ></login-component>
   </div>
-
 </div>

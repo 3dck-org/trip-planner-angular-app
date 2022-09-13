@@ -1,21 +1,24 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AuthStateService} from "../services/auth-state.service";
-import {LoadingStateService} from "../services/loading-state.service";
-import * as AuthActions from "../../state/auth/auth.actions";
-import {Store} from "@ngrx/store";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthStateService } from '../services/auth-state.service';
+import { LoadingStateService } from '../../core/services/loading-state.service';
+import * as AuthActions from '../services/auth.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'registration-component',
   templateUrl: './registration-component.component.html',
-  styleUrls: ['./registration-component.component.scss']
+  styleUrls: ['./registration-component.component.scss'],
 })
 export class RegistrationComponentComponent implements OnInit {
-
   fg: FormGroup;
 
-  constructor(private fb: FormBuilder, public authState: AuthStateService,
-              public spinner: LoadingStateService, private store: Store) {
+  constructor(
+    private fb: FormBuilder,
+    public authState: AuthStateService,
+    public spinner: LoadingStateService,
+    private store: Store
+  ) {
     spinner.hide();
     this.fg = this.fb.group({
       name: ['', Validators.required],
@@ -23,12 +26,10 @@ export class RegistrationComponentComponent implements OnInit {
       surname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-    })
+    });
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   register() {
     const credentials = {
@@ -37,8 +38,7 @@ export class RegistrationComponentComponent implements OnInit {
       name: this.fg.get('name')?.value,
       surname: this.fg.get('surname')?.value,
       login: this.fg.get('login')?.value,
-    }
-    this.store.dispatch(AuthActions.registerRequest({credentials}))
+    };
+    this.store.dispatch(AuthActions.registerRequest({ credentials }));
   }
-
 }

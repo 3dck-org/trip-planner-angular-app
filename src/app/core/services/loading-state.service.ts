@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import {Overlay, OverlayRef} from "@angular/cdk/overlay";
-import {ComponentPortal} from "@angular/cdk/portal";
-import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import { Injectable } from '@angular/core';
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoadingStateService {
   private readonly overlayRef: OverlayRef;
@@ -14,7 +14,11 @@ export class LoadingStateService {
       hasBackdrop: true,
       width: 100,
       height: 100,
-      positionStrategy: this.overlay.position().global().centerVertically().centerHorizontally(),
+      positionStrategy: this.overlay
+        .position()
+        .global()
+        .centerVertically()
+        .centerHorizontally(),
     });
   }
 

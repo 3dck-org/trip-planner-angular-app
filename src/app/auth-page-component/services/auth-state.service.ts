@@ -1,15 +1,13 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject} from "rxjs";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthStateService {
+  constructor() {}
 
-  constructor() {
-  }
-
-  private authTypeTabSubject = new BehaviorSubject<string>("login");
+  private authTypeTabSubject = new BehaviorSubject<string>('login');
 
   get authTypeTab() {
     return this.authTypeTabSubject.value;

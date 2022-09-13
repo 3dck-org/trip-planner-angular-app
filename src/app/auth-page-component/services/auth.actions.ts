@@ -1,16 +1,15 @@
-import {createAction, props} from "@ngrx/store";
-import {AuthResponse} from "../../interfaces/response/auth-response";
+import { createAction, props } from '@ngrx/store';
+import { AuthResponse } from '../interfaces/response/auth-response';
 
 export const loginRequest = createAction(
   '[Auth] Login Request',
-  props<{ credentials: { email: string, password: string } }>()
+  props<{ credentials: { email: string; password: string } }>()
 );
 
 export const loginSuccess = createAction(
   '[Auth] Login Success',
   props<{ loginSuccessResponse: AuthResponse }>()
 );
-
 
 export const loginFailure = createAction(
   '[Auth] Login Failure',
@@ -19,7 +18,15 @@ export const loginFailure = createAction(
 
 export const registerRequest = createAction(
   '[Auth] Register Request',
-  props<{ credentials: { email: string, password: string, name: string, surname: string, login: string } }>()
+  props<{
+    credentials: {
+      email: string;
+      password: string;
+      name: string;
+      surname: string;
+      login: string;
+    };
+  }>()
 );
 
 export const registerSuccess = createAction(
@@ -33,6 +40,3 @@ export const registerFailure = createAction(
 );
 
 export const logout = createAction('[Auth] Logout');
-
-
-
