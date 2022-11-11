@@ -1,4 +1,4 @@
-import { ActionCreator, ActionReducer, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import {
   loginFailure,
   loginSuccess,

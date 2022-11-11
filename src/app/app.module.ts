@@ -28,10 +28,12 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { DashboardMapComponent } from './dashboard-map/dashboard-map/dashboard-map.component';
 import { DashboardTripsComponent } from './dashboard-trips/dashboard-trips/dashboard-trips.component';
 import { DashboardSearchComponent } from './dashboard-search/dashboard-search/dashboard-search.component';
-import { UserProfileComponent } from './user-profile/user-profile/user-profile.component';
 import { DashboardTripElementComponent } from './dashboard-trip-element/dashboard-trip-element/dashboard-trip-element.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { TripEffects } from './dashboard-trips/services/trip.effects';
+import { journeyReducer } from './dashboard-trips/services/journey/journey.reducer';
+import { JourneyEffects } from './dashboard-trips/services/journey/journey.effects';
+import { ProfileComponent } from './profile/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -39,12 +41,12 @@ import { TripEffects } from './dashboard-trips/services/trip.effects';
     AuthPageComponentComponent,
     RegistrationComponentComponent,
     LoginComponentComponent,
-    UserProfileComponent,
     DashboardComponent,
     DashboardMapComponent,
     DashboardTripsComponent,
     DashboardSearchComponent,
     DashboardTripElementComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,8 +63,11 @@ import { TripEffects } from './dashboard-trips/services/trip.effects';
     HttpClientModule,
     OverlayModule,
     //@ts-ignore
-    StoreModule.forRoot({ auth: authReducer, trips: tripReducer }, {}),
-    EffectsModule.forRoot([AuthEffects, TripEffects]),
+    StoreModule.forRoot(
+      { auth: authReducer, trips: tripReducer, journey: journeyReducer },
+      {}
+    ),
+    EffectsModule.forRoot([AuthEffects, TripEffects, JourneyEffects]),
     GoogleMapsModule,
     MatExpansionModule,
   ],

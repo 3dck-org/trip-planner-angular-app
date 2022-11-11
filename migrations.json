@@ -1,36 +1,36 @@
 {
   "migrations": [
     {
+      "version": "14.8.0-beta.0",
+      "description": "Migrates from @nrwl/workspace:run-commands to nx:run-commands",
       "cli": "nx",
-      "version": "14.5.0-beta.0",
-      "description": "Update any references of MFE to MF.",
-      "factory": "./src/migrations/update-14-5-0/migrate-mfe-to-mf",
-      "package": "@nrwl/angular",
-      "name": "migrate-mfe-to-mf"
+      "implementation": "./src/migrations/update-14-8-0/change-run-commands-executor",
+      "package": "@nrwl/workspace",
+      "name": "14-8-0-change-run-commands-executor"
     },
     {
       "cli": "nx",
-      "version": "14.5.2-beta.0",
-      "description": "Update the @angular/cli package version to ~14.1.0.",
-      "factory": "./src/migrations/update-14-5-2/update-angular-cli",
+      "version": "15.0.0-beta.0",
+      "description": "Rename @nrwl/angular:webpack-server executor to @nrwl/angular:webpack-dev-server",
+      "factory": "./src/migrations/update-14-8-0/rename-webpack-server",
       "package": "@nrwl/angular",
-      "name": "update-angular-cli-version-14-1-0"
+      "name": "rename-webpack-server-executor"
     },
     {
       "cli": "nx",
-      "version": "14.5.7-beta.0",
-      "description": "Update the rxjs package version to ~7.5.0 if RxJS 7 is used in workspace.",
-      "factory": "./src/migrations/update-14-5-7/update-rxjs",
+      "version": "15.0.0-beta.0",
+      "description": "Update the usages of @nrwl/angular/testing to import jasmine-marbles symbols from jasmine-marbles itself.",
+      "factory": "./src/migrations/update-15-0-0/switch-to-jasmine-marbles",
       "package": "@nrwl/angular",
-      "name": "update-rxjs-7-5-0"
+      "name": "switch-to-jasmine-marbles"
     },
     {
       "cli": "nx",
-      "version": "14.6.0-beta.0",
-      "description": "Update the @angular/cli package version to ~14.2.0.",
-      "factory": "./src/migrations/update-14-6-0/update-angular-cli",
+      "version": "15.0.0-beta.1",
+      "description": "Stop hashing karma spec files and config files for build targets and dependent tasks",
+      "factory": "./src/migrations/update-15-0-0/add-karma-inputs",
       "package": "@nrwl/angular",
-      "name": "update-angular-cli-version-14-2-0"
+      "name": "add-karma-inputs"
     }
   ]
 }
