@@ -6,6 +6,7 @@
 .container {
 }
 
+
 .image {
   width: 6rem;
   height: 6rem;
@@ -26,15 +27,27 @@
   user-select: none;
 }
 
-.journey-button{
+.journey-button {
   width: 100%;
 }
 
-.journey-active{
+.favorite-button{
+  transform: scale(1.2);
+  float: right;
+}
+
+.favorite-selected{
+  color: goldenrod;
+}
+
+.title{
+  width: 100%;
+}
+.journey-active {
   background: whitesmoke;
 }
 
-.active-journey-icon{
+.active-journey-icon {
   margin-left: 4rem;
   transform: scale(2);
 }

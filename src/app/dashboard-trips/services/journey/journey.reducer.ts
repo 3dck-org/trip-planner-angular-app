@@ -1,7 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import {
-  currentJourneyResponse,
+  journeyStopResponse,
   journeyCreateResponse,
+  currentJourneyResponse,
 } from './journey.actions';
 import { Journey } from '../../interfaces/journey';
 
@@ -29,6 +30,12 @@ const _journeyReducer = createReducer(
     return {
       ...state,
       journey: journey,
+    };
+  }),
+  on(journeyStopResponse, (state, { journey }) => {
+    return {
+      ...state,
+      journey: initialState.journey,
     };
   }),
   on(currentJourneyResponse, (state, { journey }) => {

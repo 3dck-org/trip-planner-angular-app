@@ -28,8 +28,21 @@ export class JourneyEffects {
       tap(() => this.spinner.show()),
       exhaustMap((action) =>
         this.journeyService.currentJourney$().pipe(
-          map((journeys) => journeys[0]),
           map((journey) => JourneyActions.currentJourneyResponse({ journey })),
+          catchError((error) => of(JourneyActions.error({ error })))
+        )
+      ),
+      tap(() => this.spinner.hide())
+    )
+  );
+
+  stopJourney$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(JourneyActions.journeyStop),
+      tap(() => this.spinner.show()),
+      exhaustMap((action) =>
+        this.journeyService.stopJourney$(action.journeyId).pipe(
+          map((journey) => JourneyActions.journeyStopResponse({ journey })),
           catchError((error) => of(JourneyActions.error({ error })))
         )
       ),

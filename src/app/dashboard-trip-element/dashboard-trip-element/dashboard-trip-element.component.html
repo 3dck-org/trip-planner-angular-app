@@ -7,16 +7,20 @@
       : 'not-active'
   "
 >
-  <mat-expansion-panel-header class="card">
+  <mat-expansion-panel-header class="card" [ngClass]="trip.id === (selectedJourney$ | async)?.trip_id ? 'selected':''">
     <mat-panel-title>
       <img class="image" [src]="trip!.image_url"
-    /></mat-panel-title>
+      /></mat-panel-title>
     <mat-panel-description>
       <div class="title">
-        <h2>{{ trip!.name }}</h2>
+        <h2>{{ trip!.name }}
+          <span>
+              <button class="favorite-button" (click)="updateFavorite(trip)" [ngClass]="trip.favorite?'favorite-selected':''" mat-icon-button>
+                <mat-icon >star</mat-icon></button>
+            </span>
+        </h2>
         <p>Created at: {{ trip!.created_at | date }}</p>
       </div>
-      <span class="active-journey-icon" *ngIf=" trip.id === (selectedJourney$ | async)?.trip_id"><mat-icon>outlined_flag</mat-icon> </span>
     </mat-panel-description>
   </mat-expansion-panel-header>
   <h2>Description:</h2>
@@ -37,11 +41,19 @@
       <mat-icon class="cat-relax">spa</mat-icon>
     </button>
   </div>
+  <button *ngIf=" trip.id === (selectedJourney$ | async)?.trip_id"
+          mat-flat-button
+          color="primary"
+          class="journey-button"
+          (click)="stopJourney()"
+  >
+    Stop Journey
+  </button>
   <button *ngIf=" trip.id !== (selectedJourney$ | async)?.trip_id"
-    mat-flat-button
-    color="primary"
-    class="journey-button"
-    (click)="createJourney(trip.id)"
+          mat-flat-button
+          color="primary"
+          class="journey-button"
+          (click)="createJourney(trip.id)"
   >
     Create Journey
   </button>

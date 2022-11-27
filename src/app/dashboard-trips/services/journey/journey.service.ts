@@ -18,8 +18,15 @@ export class JourneyService {
       }
     );
 
+  stopJourney$ = (tripId: number) => <Observable<Journey>>this.http.put(
+      `${environment.API_URL}/api/v1/journeys/${tripId}`,
+      {
+        completed: true,
+      }
+    );
+
   currentJourney$ = () =>
-    <Observable<Journey[]>>(
-      this.http.get(`${environment.API_URL}/api/v1/journeys`)
+    <Observable<Journey>>(
+      this.http.get(`${environment.API_URL}/api/v1/current_journey`)
     );
 }

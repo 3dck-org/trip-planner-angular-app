@@ -34,6 +34,10 @@ import { TripEffects } from './dashboard-trips/services/trip.effects';
 import { journeyReducer } from './dashboard-trips/services/journey/journey.reducer';
 import { JourneyEffects } from './dashboard-trips/services/journey/journey.effects';
 import { ProfileComponent } from './profile/profile/profile.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { ProfileEffects } from './profile/effects/profile.effects';
+import { profileReducer } from './profile/reducers/profile.reducer';
+import { NgOptimizedImage } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -64,12 +68,24 @@ import { ProfileComponent } from './profile/profile/profile.component';
     OverlayModule,
     //@ts-ignore
     StoreModule.forRoot(
-      { auth: authReducer, trips: tripReducer, journey: journeyReducer },
+      {
+        auth: authReducer,
+        trips: tripReducer,
+        journey: journeyReducer,
+        profile: profileReducer,
+      },
       {}
     ),
-    EffectsModule.forRoot([AuthEffects, TripEffects, JourneyEffects]),
+    EffectsModule.forRoot([
+      AuthEffects,
+      TripEffects,
+      JourneyEffects,
+      ProfileEffects,
+    ]),
     GoogleMapsModule,
     MatExpansionModule,
+    MatChipsModule,
+    NgOptimizedImage,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

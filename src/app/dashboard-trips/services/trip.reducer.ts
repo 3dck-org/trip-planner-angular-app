@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { Trip } from '../interfaces/trip';
-import { tripListResponse } from './trip.actions';
+import { changeFavoriteStatusResponse, tripListResponse } from './trip.actions';
+import { state } from '@angular/animations';
 
 export interface State {
   trips: Array<Trip>;
@@ -16,6 +17,11 @@ const _tripReducer = createReducer(
     return {
       ...state,
       trips: tripsList,
+    };
+  }),
+  on(changeFavoriteStatusResponse, (state, { trip }) => {
+    return {
+      ...state,
     };
   })
 );

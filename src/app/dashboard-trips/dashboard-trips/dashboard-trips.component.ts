@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Trip } from '../interfaces/trip';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -9,7 +9,7 @@ import { getTrips, State } from '../services/trip.reducer';
   templateUrl: './dashboard-trips.component.html',
   styleUrls: ['./dashboard-trips.component.scss'],
 })
-export class DashboardTripsComponent implements OnInit {
+export class DashboardTripsComponent {
   tripsSubject = new BehaviorSubject<Trip[]>([]);
 
   trips$: Observable<Array<Trip>> = this.tripsSubject.asObservable();
@@ -21,6 +21,4 @@ export class DashboardTripsComponent implements OnInit {
       }
     });
   }
-
-  ngOnInit(): void {}
 }

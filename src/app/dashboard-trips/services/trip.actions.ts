@@ -12,3 +12,13 @@ export const error = createAction(
   '[Trip] List Failure',
   props<{ error: string }>()
 );
+
+export const changeFavoriteStatus = createAction(
+  '[Trip] Update Favorite Status',
+  props<{ trip: Trip }>()
+);
+
+export const changeFavoriteStatusResponse = createAction(
+  '[Trip] Update Favorite Status Response',
+  props<{ trip: Trip }>()
+);

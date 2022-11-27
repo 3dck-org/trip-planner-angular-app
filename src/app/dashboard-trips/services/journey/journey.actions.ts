@@ -22,3 +22,13 @@ export const currentJourneyResponse = createAction(
   '[Journey] Current Journey Response',
   props<{ journey: Journey }>()
 );
+
+export const journeyStop = createAction(
+  '[Journey] Stop',
+  props<{ journeyId: number }>()
+);
+
+export const journeyStopResponse = createAction(
+  '[Journey] Stop Response',
+  props<{ journey: Journey }>()
+);
