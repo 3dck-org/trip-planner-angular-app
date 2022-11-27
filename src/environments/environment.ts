@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_URL: 'http://167.99.140.40/',
+  API_URL: 'https://trip-planner-api.tk/',
 };
 
 /*
