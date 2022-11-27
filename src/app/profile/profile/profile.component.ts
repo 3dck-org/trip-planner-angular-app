@@ -34,9 +34,9 @@ export class ProfileComponent {
       }
     });
     this.storeProfile.dispatch(TripActions.tripsListRequest());
-    this.storeTrip.pipe(select(getTrips)).subscribe((res) => {
+    this.storeTrip.pipe(select(getTrips)).subscribe((res: Trip[]) => {
       if (res) {
-        this.favoriteTripsSubject.next(res);
+        this.favoriteTripsSubject.next(res.filter((trip) => trip.favorite));
       }
     });
   }
