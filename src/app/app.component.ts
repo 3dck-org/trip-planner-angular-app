@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthStateService } from './auth-page-component/services/auth-state.service';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,9 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'trip-planner-angular-app';
-  constructor(public router: Router) {}
+  constructor(public router: Router, private authState: AuthStateService) {}
+
+  logout() {
+    this.authState.logout();
+  }
 }

@@ -3,16 +3,16 @@
     <div class="part">
       <a mat-icon-button class="logo"><mat-icon>menu</mat-icon></a>
     </div>
-    <a mat-button class="part">
+    <a mat-button routerLink="/" class="part">
       <mat-icon class="logo">map</mat-icon>
       <a mat-button class="title disable-text-selection">Trip Planner</a>
     </a>
     <div class="part" *ngIf="router.url != '/auth'">
-      <a mat-icon-button class="account"><mat-icon>star</mat-icon></a>
-      <a mat-icon-button class="account"><mat-icon>face</mat-icon></a>
+      <a mat-icon-button routerLink="/achievements" class="account"><mat-icon>star</mat-icon></a>
+      <a mat-icon-button routerLink="/profile" class="account"><mat-icon>face</mat-icon></a>
       <div class="logout">
         <a mat-icon-button>
-          <mat-icon class="logout-icon">logout</mat-icon>
+          <mat-icon (click)="logout()" class="logout-icon">logout</mat-icon>
         </a>
       </div>
     </div>

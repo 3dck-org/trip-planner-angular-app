@@ -9,5 +9,7 @@ export interface Trip {
   duration: number;
   created_at: Date;
   updated_at: Date;
+  image_url: string;
+  favorite: boolean;
   trip_place_infos: TripPlaceInfo[];
 }

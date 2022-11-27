@@ -12,4 +12,13 @@ export class TripService {
 
   tripList$ = () =>
     <Observable<Trip[]>>this.http.get(`${environment.API_URL}/api/v1/trips`);
+
+  updateFavoriteStatus$ = (trip: Trip) => <Observable<Trip>>this.http.put(
+      `${environment.API_URL}api/v1/trips/${trip.id}`,
+      {
+        trip: {
+          favorite: trip.favorite ? !trip.favorite : true,
+        },
+      }
+    );
 }

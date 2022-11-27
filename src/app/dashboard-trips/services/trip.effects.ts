@@ -22,6 +22,26 @@ export class TripEffects {
     )
   );
 
+  updateFavoriteStatus$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TripActions.changeFavoriteStatus),
+      tap(() => this.spinner.show()),
+      exhaustMap((action) =>
+        this.tripService.updateFavoriteStatus$(action.trip).pipe(
+          map((trip) => TripActions.changeFavoriteStatusResponse({ trip })),
+          catchError((error) => of(TripActions.error({ error })))
+        )
+      ),
+      exhaustMap((action) =>
+        this.tripService.tripList$().pipe(
+          map((tripsList) => TripActions.tripListResponse({ tripsList })),
+          catchError((error) => of(TripActions.error({ error })))
+        )
+      ),
+      tap(() => this.spinner.hide())
+    )
+  );
+
   constructor(
     private actions$: Actions,
     private spinner: LoadingStateService,

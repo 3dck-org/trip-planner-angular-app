@@ -1,0 +1,165 @@
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  min-height: 95vh;
+  flex-direction: column;
+  margin: 0;
+}
+
+.profile {
+  max-height: 95vh;
+
+}
+
+.profile-main-info {
+  margin-left: 15vw;
+  margin-top: 1.5rem;
+}
+
+.left-side-image {
+  margin: 2rem;
+  width: 90%;
+  height: 100%;
+  border-radius: 7px;
+  object-fit: cover;
+}
+
+#profile {
+  display: flex;
+  flex: 1;
+}
+
+#profile > #info {
+  margin: 2rem 0.5rem 1.5rem 1rem;
+  flex: 1;
+  order: 3;
+}
+
+.info-field {
+  display: flex;
+  margin-bottom: 1.9rem;
+}
+
+.mat-card-favorite-elem {
+  width: 45%;
+  height: 100%;
+  margin-left: 2rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+.mat-card-profile {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.field-title {
+  width: 150px;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.field-value {
+  font-size: 1rem;
+}
+
+
+#info,
+tp-profile-map {
+  border-radius: 5px;
+}
+
+#profile > #pic-menu {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 20vw;
+}
+
+#profile > #empty {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 20vw;
+  order: 4;
+}
+
+#profile > #empty-pic-menu {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 20vw;
+  order: 1;
+}
+
+#profile > #pic-menu {
+  margin: 1rem 0.5rem 1.5rem 1rem;
+  order: 2;
+}
+
+.avatar {
+  clip-path: circle();
+  width: 300px;
+  height: 300px;
+  margin-left: 3rem;
+}
+
+.place-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+}
+
+header,
+footer,
+article,
+nav,
+aside {
+  padding: 1em;
+}
+
+.favorite-container {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.favorite-icon {
+  transform: scale(1.5);
+  margin-left: 0.5rem;
+  color: #3f51b5;
+}
+.favorite-title{
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+}
+
+.interests-container{
+  margin-bottom: 1rem;
+}
+
+.interests-chip{
+
+}
+
+.interests-title{
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+}
+.interests-content{
+  margin-left: 2rem;
+}
+.interests-icon{
+  margin-left: 1rem;
+  transform: scale(1.5);
+  color: #ff4081;
+}
+
+.favorite-card-title-group{
+  justify-content: normal;
+}
+
+.place-title{
+  margin-left: 5rem;
+}
