@@ -38,6 +38,12 @@ import { MatChipsModule } from '@angular/material/chips';
 import { ProfileEffects } from './profile/effects/profile.effects';
 import { profileReducer } from './profile/reducers/profile.reducer';
 import { NgOptimizedImage } from '@angular/common';
+import { JourneyComponent } from './journey/journey/journey.component';
+import { JourneyRoadmapComponent } from './journey/journey-roadmap/journey-roadmap.component';
+import {MatStepperModule} from "@angular/material/stepper";
+import { JourneyRoadmapTitleComponent } from './journey/journey-roadmap-title/journey-roadmap-title.component';
+import { RoadmapPlaceDescriptionComponent } from './journey/roadmap-place-description/roadmap-place-description.component';
+import { CategoryListComponent } from './core/category-list/category-list.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +57,11 @@ import { NgOptimizedImage } from '@angular/common';
     DashboardSearchComponent,
     DashboardTripElementComponent,
     ProfileComponent,
+    JourneyComponent,
+    JourneyRoadmapComponent,
+    JourneyRoadmapTitleComponent,
+    RoadmapPlaceDescriptionComponent,
+    CategoryListComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,6 +97,7 @@ import { NgOptimizedImage } from '@angular/common';
     MatExpansionModule,
     MatChipsModule,
     NgOptimizedImage,
+    MatStepperModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

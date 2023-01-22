@@ -4,6 +4,10 @@
       <tp-dashboard-search></tp-dashboard-search>
       <tp-dashboard-trips></tp-dashboard-trips>
     </div>
+
+    <div id="journey-roadmap" *ngIf="(journey$ |async)?.trip">
+      <tp-journey-roadmap></tp-journey-roadmap>
+    </div>
     <div id="map"><tp-dashboard-map> </tp-dashboard-map></div>
   </div>
 </div>

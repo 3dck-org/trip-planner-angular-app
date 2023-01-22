@@ -1,59 +1,94 @@
 <mat-expansion-panel
   class="container mat-elevation-z0"
   hideToggle
+  *ngIf="(_journeyMode && _trip) || _journeyMode === false"
+  [expanded]="_journeyMode === true"
   [ngClass]="
-    trip.id === (selectedJourney$ | async)?.trip_id
+    _trip && _trip.id === (selectedJourney$ | async)?.trip?.id
       ? 'journey-active'
       : 'not-active'
   "
 >
-  <mat-expansion-panel-header class="card" [ngClass]="trip.id === (selectedJourney$ | async)?.trip_id ? 'selected':''">
+  <mat-expansion-panel-header
+    class="card"
+    [ngClass]="
+      _trip && _trip.id === (selectedJourney$ | async)?.trip?.id
+        ? 'selected'
+        : ''
+    "
+  >
     <mat-panel-title>
-      <img class="image" [src]="trip!.image_url"
-      /></mat-panel-title>
+      <img class="image" [src]="_trip!.image_url"
+    /></mat-panel-title>
     <mat-panel-description>
       <div class="title">
-        <h2>{{ trip!.name }}
+        <h2>
+          {{ _trip!.name }}
           <span>
-              <button class="favorite-button" (click)="updateFavorite(trip)" [ngClass]="trip.favorite?'favorite-selected':''" mat-icon-button>
-                <mat-icon >star</mat-icon></button>
-            </span>
+            <button
+              class="favorite-button"
+              (click)="updateFavorite(_trip)"
+              [ngClass]="_trip.favorite ? 'favorite-selected' : ''"
+              *ngIf="_journeyMode === false"
+              mat-icon-button
+            >
+              <mat-icon>star</mat-icon>
+            </button>
+          </span>
         </h2>
-        <p>Created at: {{ trip!.created_at | date }}</p>
+        <p *ngIf="_journeyMode === false">
+          Created at: {{ _trip!.created_at | date }}
+        </p>
       </div>
     </mat-panel-description>
   </mat-expansion-panel-header>
-  <h2>Description:</h2>
-  <h4>{{ trip!.description }}</h4>
-  <h2>Distance:</h2>
-  <h4>{{ trip!.distance }}</h4>
-  <h2>Duration:</h2>
-  <h4>{{ trip!.duration }}</h4>
-  <h2>Author info:</h2>
-  <h4>Created at: {{ trip!.created_at | date }}</h4>
-  <h4>Updated at: {{ trip!.updated_at | date }}</h4>
-  <h2>Categories:</h2>
-  <div id="categories">
-    <button mat-icon-button matSuffix>
-      <mat-icon class="cat-drink">local_drink</mat-icon>
-    </button>
-    <button mat-icon-button matSuffix>
-      <mat-icon class="cat-relax">spa</mat-icon>
-    </button>
+  <div
+    *ngIf="
+      _trip.id !== (selectedJourney$ | async)?.trip?.id &&
+      _journeyMode === false || ( _trip.id === (selectedJourney$ | async)?.trip?.id &&
+      _journeyMode === true)
+    "
+  >
+    <h2>Description:</h2>
+    <h4>{{ _trip!.description }}</h4>
+    <h2>Distance:</h2>
+    <h4>{{ _trip!.distance }} meters</h4>
+    <h2>Duration:</h2>
+    <h4>{{ _trip!.duration / 60 }} minutes</h4>
+    <h2>Author info:</h2>
+    <h4>Created at: {{ _trip!.created_at | date }}</h4>
+    <h4>Updated at: {{ _trip!.updated_at | date }}</h4>
+    <h2>Categories:</h2>
+    <div id="categories">
+      <button mat-icon-button matSuffix>
+        <mat-icon class="cat-drink">local_drink</mat-icon>
+      </button>
+      <button mat-icon-button matSuffix>
+        <mat-icon class="cat-relax">spa</mat-icon>
+      </button>
+    </div>
   </div>
-  <button *ngIf=" trip.id === (selectedJourney$ | async)?.trip_id"
-          mat-flat-button
-          color="primary"
-          class="journey-button"
-          (click)="stopJourney()"
+  <button
+    *ngIf="
+      _trip.id === (selectedJourney$ | async)?.trip?.id &&
+      _journeyMode === false
+    "
+    mat-flat-button
+    color="primary"
+    class="journey-button"
+    (click)="stopJourney()"
   >
     Stop Journey
   </button>
-  <button *ngIf=" trip.id !== (selectedJourney$ | async)?.trip_id"
-          mat-flat-button
-          color="primary"
-          class="journey-button"
-          (click)="createJourney(trip.id)"
+  <button
+    *ngIf="
+      _trip.id !== (selectedJourney$ | async)?.trip?.id &&
+      _journeyMode === false
+    "
+    mat-flat-button
+    color="primary"
+    class="journey-button"
+    (click)="createJourney(_trip.id)"
   >
     Create Journey
   </button>

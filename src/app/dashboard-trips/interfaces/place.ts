@@ -1,5 +1,6 @@
 import { Point } from './point';
 import { Address } from './address';
+import { CategoryDictionaries } from './category-dictionaries';
 
 export interface Place {
   id: number;
@@ -10,4 +11,5 @@ export interface Place {
   created_at: Date;
   updated_at: Date;
   address: Address;
+  category_dictionaries: CategoryDictionaries[];
 }

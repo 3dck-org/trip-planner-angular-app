@@ -5,6 +5,7 @@ import {
   currentJourneyResponse,
 } from './journey.actions';
 import { Journey } from '../../interfaces/journey';
+import { RoadPart } from '../../../core/interfaces/road-part';
 
 export interface State {
   journey: Journey;
@@ -13,8 +14,8 @@ export interface State {
 export const initialState: State = {
   journey: {
     id: null,
-    trip_id: null,
-    user_id: null,
+    trip: null,
+    user: null,
     completed: null,
     distance: null,
     start_at: null,
@@ -53,3 +54,39 @@ export function journeyReducer(state, action) {
 
 // @ts-ignore
 export const getJourney = (state: State): Journey => state.journey.journey;
+
+export const getRoadParts = (state: State): RoadPart[] => {
+  const roadParts: RoadPart[] = [];
+  let journey = getJourney(state);
+  if (!journey || !journey.trip) return [];
+  let tripPlaceInfos = journey.trip?.trip_place_infos;
+  if (tripPlaceInfos) {
+    for (
+      let first = 0, second = 1;
+      first < tripPlaceInfos.length;
+      first++, second++
+    ) {
+      if (second == tripPlaceInfos.length) {
+        let firstPlaceInfo = tripPlaceInfos[first];
+        let roadPart = {
+          place: firstPlaceInfo,
+          startPoint: firstPlaceInfo.place.point,
+          endPoint: {},
+          mapMarker: {},
+        } as RoadPart;
+        roadParts.push(roadPart);
+      } else {
+        let firstPlaceInfo = tripPlaceInfos[first];
+        let secondPlaceInfo = tripPlaceInfos[second];
+        let roadPart = {
+          place: firstPlaceInfo,
+          startPoint: firstPlaceInfo.place.point,
+          endPoint: secondPlaceInfo.place.point,
+          mapMarker: {},
+        } as RoadPart;
+        roadParts.push(roadPart);
+      }
+    }
+  }
+  return roadParts;
+};
