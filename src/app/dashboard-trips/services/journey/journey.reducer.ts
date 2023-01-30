@@ -33,7 +33,7 @@ const _journeyReducer = createReducer(
       journey: journey,
     };
   }),
-  on(journeyStopResponse, (state, { journey }) => {
+  on(journeyStopResponse, (state, {}) => {
     return {
       ...state,
       journey: initialState.journey,
@@ -57,7 +57,8 @@ export const getJourney = (state: State): Journey => state.journey.journey;
 
 export const getRoadParts = (state: State): RoadPart[] => {
   const roadParts: RoadPart[] = [];
-  let journey = getJourney(state);
+  // @ts-ignore
+  let journey = state.journey.journey;
   if (!journey || !journey.trip) return [];
   let tripPlaceInfos = journey.trip?.trip_place_infos;
   if (tripPlaceInfos) {

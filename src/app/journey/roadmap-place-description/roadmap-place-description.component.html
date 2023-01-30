@@ -1,4 +1,10 @@
-<p>{{ _place.description }}</p>
+<h3>{{ _place.description }}</h3>
+<span
+  >{{ _place.address.street }}, {{ _place.address.buildingNumber
+  }}{{
+    _place.address.apartment != null ? "" + _place.address.apartment : ""
+  }}</span
+>
 <tp-category-list
   [categories]="_place.category_dictionaries"
 ></tp-category-list>

@@ -1,0 +1,62 @@
+.container {
+  width: 100%;
+  height: 60vh;
+  flex-direction: row;
+  margin: 0;
+  display: flex;
+}
+
+.description {
+  display: flex;
+  flex: 1;
+}
+
+.description > .card {
+  flex: 0 0 20vw;
+  order: 2;
+
+}
+
+.image-container{
+  display: flex;
+  justify-content: center;
+}
+
+.description > .empty1 {
+  flex: 1;
+  order: 1;
+}
+
+.description > .empty2 {
+  flex: 1;
+  order: 3;
+}
+
+.mat-card {
+
+}
+
+.trip-image {
+  width: 12rem;
+  height: 12rem;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.content {
+  margin: 2rem;
+}
+
+
+.trip-image-input-url {
+
+}
+
+.description-input {
+  width: 100%;
+
+}
+
+.default-input {
+  width: 100%;
+}

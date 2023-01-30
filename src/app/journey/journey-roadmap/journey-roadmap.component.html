@@ -1,6 +1,6 @@
-<mat-card class="mat-elevation-z0">
+<mat-card  class="mat-elevation-z0">
   <tp-dashboard-trip-element  [journeyMode]="true" [trip]="(journey$ | async)?.trip"></tp-dashboard-trip-element>
-  <mat-card-content>
+  <mat-card-content class="road-map">
     <mat-vertical-stepper
       [linear]="true"
       *ngIf="(journey$ | async)?.trip?.trip_place_infos !== undefined"

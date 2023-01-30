@@ -1,15 +1,21 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row class="header">
     <div class="part">
-      <a mat-icon-button class="logo"><mat-icon>menu</mat-icon></a>
+      <a mat-icon-button (click)="drawer.toggle()" class="logo">
+        <mat-icon>menu</mat-icon>
+      </a>
     </div>
     <a mat-button routerLink="/" class="part">
       <mat-icon class="logo">map</mat-icon>
       <a mat-button class="title disable-text-selection">Trip Planner</a>
     </a>
     <div class="part" *ngIf="router.url != '/auth'">
-      <a mat-icon-button routerLink="/achievements" class="account"><mat-icon>star</mat-icon></a>
-      <a mat-icon-button routerLink="/profile" class="account"><mat-icon>face</mat-icon></a>
+      <a mat-icon-button routerLink="/achievements" class="account">
+        <mat-icon>emoji_events</mat-icon>
+      </a>
+      <a mat-icon-button routerLink="/profile" class="account">
+        <mat-icon>account_circle</mat-icon>
+      </a>
       <div class="logout">
         <a mat-icon-button>
           <mat-icon (click)="logout()" class="logout-icon">logout</mat-icon>
@@ -18,5 +24,27 @@
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
-<router-outlet></router-outlet>
+<mat-drawer-container>
+  <mat-drawer #drawer class="side-nav" mode="side">
+    <mat-list class="nav-links-list">
+      <mat-list-item class="nav-elem">
+        <button mat-flat-button routerLink="dashboard" class="nav-elem-button">
+          Dashboard
+          <mat-icon class="nav-icon">dashboard</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item class="nav-elem">
+        <button mat-flat-button  routerLink="create-trip" class="nav-elem-button">
+          Trip Creator
+          <mat-icon class="nav-icon">add_circle_outline</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
+
 <footer></footer>

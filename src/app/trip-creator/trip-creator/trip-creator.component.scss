@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  min-height: 95vh;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+mat-stepper {
+  height: 94vh;
+}
+
+mat-step {
+  height: 90vh;
+}
+
+.stepper-content{
+  margin: 1rem;
+}

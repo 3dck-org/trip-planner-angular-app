@@ -19,7 +19,7 @@
   >
     <mat-panel-title>
       <img class="image" [src]="_trip!.image_url"
-    /></mat-panel-title>
+      /></mat-panel-title>
     <mat-panel-description>
       <div class="title">
         <h2>
@@ -44,9 +44,10 @@
   </mat-expansion-panel-header>
   <div
     *ngIf="
-      _trip.id !== (selectedJourney$ | async)?.trip?.id &&
-      _journeyMode === false || ( _trip.id === (selectedJourney$ | async)?.trip?.id &&
-      _journeyMode === true)
+      (_trip.id !== (selectedJourney$ | async)?.trip?.id &&
+        _journeyMode === false) ||
+      (_trip.id === (selectedJourney$ | async)?.trip?.id &&
+        _journeyMode === true)
     "
   >
     <h2>Description:</h2>
@@ -68,28 +69,26 @@
       </button>
     </div>
   </div>
-  <button
-    *ngIf="
-      _trip.id === (selectedJourney$ | async)?.trip?.id &&
-      _journeyMode === false
-    "
-    mat-flat-button
-    color="primary"
-    class="journey-button"
-    (click)="stopJourney()"
-  >
-    Stop Journey
-  </button>
-  <button
-    *ngIf="
-      _trip.id !== (selectedJourney$ | async)?.trip?.id &&
-      _journeyMode === false
-    "
-    mat-flat-button
-    color="primary"
-    class="journey-button"
-    (click)="createJourney(_trip.id)"
-  >
-    Create Journey
-  </button>
+  <div *ngIf="selectedJourney$ | async as journey">
+    <button
+      *ngIf="_journeyMode === false && _trip.id === journey?.trip?.id"
+      mat-flat-button
+      color="primary"
+      class="journey-button"
+      (click)="stopJourney(journey.id)"
+    >
+      Stop Journey
+    </button>
+  </div>
+  <div>
+    <button
+      *ngIf="_journeyMode === false && _trip.id !== (selectedJourney$ | async)?.trip?.id"
+      mat-flat-button
+      color="primary"
+      class="journey-button"
+      (click)="createJourney(_trip.id)"
+    >
+      Create Journey
+    </button>
+  </div>
 </mat-expansion-panel>

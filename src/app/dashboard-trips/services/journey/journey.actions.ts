@@ -1,4 +1,4 @@
-import { createAction, props } from '@ngrx/store';
+import { createAction, emptyProps, props } from '@ngrx/store';
 import { Journey } from '../../interfaces/journey';
 
 export const journeyCreate = createAction(
@@ -28,7 +28,4 @@ export const journeyStop = createAction(
   props<{ journeyId: number }>()
 );
 
-export const journeyStopResponse = createAction(
-  '[Journey] Stop Response',
-  props<{ journey: Journey }>()
-);
+export const journeyStopResponse = createAction('[Journey] Stop Response');

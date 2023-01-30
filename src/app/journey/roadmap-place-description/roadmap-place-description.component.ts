@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Place } from '../../dashboard-trips/interfaces/place';
 
 @Component({
@@ -6,7 +6,7 @@ import { Place } from '../../dashboard-trips/interfaces/place';
   templateUrl: './roadmap-place-description.component.html',
   styleUrls: ['./roadmap-place-description.component.scss'],
 })
-export class RoadmapPlaceDescriptionComponent implements OnInit {
+export class RoadmapPlaceDescriptionComponent {
   _place!: Place;
 
   @Input()
@@ -16,6 +16,4 @@ export class RoadmapPlaceDescriptionComponent implements OnInit {
     }
   }
   constructor() {}
-
-  ngOnInit(): void {}
 }

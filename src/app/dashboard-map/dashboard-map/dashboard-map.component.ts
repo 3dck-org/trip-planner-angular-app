@@ -8,7 +8,8 @@ import { GoogleMap, MapDirectionsService } from '@angular/google-maps';
 import { RoadPart } from '../../core/interfaces/road-part';
 import { SelectedPlaceInfoService } from '../../journey/services/selected-place-info.service';
 import { TripPlaceInfo } from '../../dashboard-trips/interfaces/trip-place-info';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { PlaceMapMarker } from '../../core/interfaces/place-map-marker';
 import TravelMode = google.maps.TravelMode;
 
 @Component({
@@ -18,38 +19,61 @@ import TravelMode = google.maps.TravelMode;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardMapComponent {
-  zoom = 20;
+  zoom = 15;
 
   private routeLine = new BehaviorSubject<google.maps.DirectionsResult[]>([]);
-
+  public mapMarkers: PlaceMapMarker[] = [];
   routeLine$ = this.routeLine.asObservable();
 
   public onMapReady(map: google.maps.Map): void {
-    this.roadParts$.subscribe((res) => {
-      if (res && res[0])
-        this.googleMap.panTo({
-          lat: res[0].startPoint.x,
-          lng: res[0].startPoint.y,
-        });
-      this.changeZoom(15);
-    });
+    map.panTo(this.center);
+    this.changeZoom(15);
   }
 
+  public center: google.maps.LatLng = new google.maps.LatLng({
+    lat: 0,
+    lng: 0,
+  });
+
   @ViewChild(GoogleMap) googleMap!: GoogleMap;
-  roadParts$ = this.store.select(getRoadParts).pipe(
-    tap((roads) => {
-      this.direction(roads);
-    })
-  );
+
+  generateMapMarkers(roadParts: RoadPart[]) {
+    if (!roadParts || roadParts.length <= 1) {
+      this.mapMarkers = [];
+      return;
+    }
+
+    this.mapMarkers = roadParts.map((roadPart) => {
+      let marker: PlaceMapMarker = {
+        label: roadPart.place.place.name,
+        options: this.mapMarkerView(roadPart.place),
+        position: {
+          lat: roadPart.startPoint.x,
+          lng: roadPart.startPoint.y,
+        },
+        tripPlaceInfo: roadPart.place,
+      };
+      return marker;
+    });
+  }
 
   constructor(
     readonly store: Store<State>,
     readonly selectedPlaceInfoService: SelectedPlaceInfoService,
     readonly mapDirectionsService: MapDirectionsService
-  ) {}
+  ) {
+    this.store.select(getRoadParts).subscribe((res) => {
+      this.direction(res);
+      this.generateMapMarkers(res);
+    });
+  }
 
   changeZoom(val: number) {
     this.zoom = val;
+  }
+
+  changeCenter(position: google.maps.LatLng) {
+    this.center = position;
   }
 
   direction(roadPart: RoadPart[]) {
@@ -57,6 +81,14 @@ export class DashboardMapComponent {
       this.routeLine.next([]);
       return;
     }
+
+    this.changeCenter(
+      new google.maps.LatLng({
+        lat: roadPart[0].startPoint.x,
+        lng: roadPart[0].startPoint.y,
+      })
+    );
+
     let wayPoints: google.maps.DirectionsWaypoint[] = [];
     for (let i = 1; i < roadPart.length - 1; i++) {
       wayPoints.push({

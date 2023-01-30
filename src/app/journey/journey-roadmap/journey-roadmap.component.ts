@@ -5,9 +5,9 @@ import {
   getJourney,
   State,
 } from '../../dashboard-trips/services/journey/journey.reducer';
-import * as JourneyActions from '../../dashboard-trips/services/journey/journey.actions';
 import { TripPlaceInfo } from '../../dashboard-trips/interfaces/trip-place-info';
 import { SelectedPlaceInfoService } from '../services/selected-place-info.service';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'tp-journey-roadmap',
@@ -17,7 +17,9 @@ import { SelectedPlaceInfoService } from '../services/selected-place-info.servic
 export class JourneyRoadmapComponent implements AfterViewInit {
   @ViewChild(MatStepper) stepper!: MatStepper;
 
-  journey$ = this.journeyStore.select(getJourney).pipe();
+  journey$ = this.journeyStore
+    .select(getJourney)
+    .pipe(tap((re) => console.log('TADAM ' + re)));
 
   ngAfterViewInit() {
     this.stepper._getIndicatorType = () => 'number';

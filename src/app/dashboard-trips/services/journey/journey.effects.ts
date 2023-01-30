@@ -15,6 +15,7 @@ export class JourneyEffects {
       exhaustMap((action) =>
         this.journeyService.createJourney$(action.tripId).pipe(
           map((journey) => JourneyActions.journeyCreateResponse({ journey })),
+          map(() => JourneyActions.currentJourney()),
           catchError((error) => of(JourneyActions.error({ error })))
         )
       ),
@@ -42,7 +43,7 @@ export class JourneyEffects {
       tap(() => this.spinner.show()),
       exhaustMap((action) =>
         this.journeyService.stopJourney$(action.journeyId).pipe(
-          map((journey) => JourneyActions.journeyStopResponse({ journey })),
+          map((journey) => JourneyActions.journeyStopResponse()),
           catchError((error) => of(JourneyActions.error({ error })))
         )
       ),

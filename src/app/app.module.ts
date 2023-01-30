@@ -40,10 +40,17 @@ import { profileReducer } from './profile/reducers/profile.reducer';
 import { NgOptimizedImage } from '@angular/common';
 import { JourneyComponent } from './journey/journey/journey.component';
 import { JourneyRoadmapComponent } from './journey/journey-roadmap/journey-roadmap.component';
-import {MatStepperModule} from "@angular/material/stepper";
+import { MatStepperModule } from '@angular/material/stepper';
 import { JourneyRoadmapTitleComponent } from './journey/journey-roadmap-title/journey-roadmap-title.component';
 import { RoadmapPlaceDescriptionComponent } from './journey/roadmap-place-description/roadmap-place-description.component';
 import { CategoryListComponent } from './core/category-list/category-list.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { TripCreatorComponent } from './trip-creator/trip-creator/trip-creator.component';
+import { TripDescriptionComponent } from './trip-creator/trip-description/trip-description.component';
+import { RoadmapCreatorComponent } from './trip-creator/roadmap-creator/roadmap-creator.component';
+import { RoadmapPlaceCreateFormComponent } from './trip-creator/roadmap-place-create-form/roadmap-place-create-form.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -62,6 +69,10 @@ import { CategoryListComponent } from './core/category-list/category-list.compon
     JourneyRoadmapTitleComponent,
     RoadmapPlaceDescriptionComponent,
     CategoryListComponent,
+    TripCreatorComponent,
+    TripDescriptionComponent,
+    RoadmapCreatorComponent,
+    RoadmapPlaceCreateFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -98,6 +109,9 @@ import { CategoryListComponent } from './core/category-list/category-list.compon
     MatChipsModule,
     NgOptimizedImage,
     MatStepperModule,
+    MatSidenavModule,
+    MatListModule,
+    DragDropModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
