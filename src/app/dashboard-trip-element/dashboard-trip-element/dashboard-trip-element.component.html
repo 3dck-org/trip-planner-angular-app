@@ -2,7 +2,8 @@
   class="container mat-elevation-z0"
   hideToggle
   *ngIf="(_journeyMode && _trip) || _journeyMode === false"
-  [expanded]="_journeyMode === true"
+  [expanded]="_journeyMode === true || (selectedJourney$ | async)?.trip?.id===_trip.id"
+  [disabled]="(selectedJourney$ | async)?.trip?.id===_trip.id"
   [ngClass]="
     _trip && _trip.id === (selectedJourney$ | async)?.trip?.id
       ? 'journey-active'

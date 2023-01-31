@@ -45,13 +45,13 @@ export class DashboardMapComponent {
 
     this.mapMarkers = roadParts.map((roadPart) => {
       let marker: PlaceMapMarker = {
-        label: roadPart.place.place.name,
-        options: this.mapMarkerView(roadPart.place),
+        label: roadPart.tripPlaceInfo.place.name,
+        options: this.mapMarkerView(roadPart),
         position: {
           lat: roadPart.startPoint.x,
           lng: roadPart.startPoint.y,
         },
-        tripPlaceInfo: roadPart.place,
+        tripPlaceInfo: roadPart.tripPlaceInfo,
       };
       return marker;
     });
@@ -73,7 +73,7 @@ export class DashboardMapComponent {
   }
 
   changeCenter(position: google.maps.LatLng) {
-    this.center = position;
+    if (this.center != position) this.center = position;
   }
 
   direction(roadPart: RoadPart[]) {
@@ -122,16 +122,26 @@ export class DashboardMapComponent {
       });
   }
 
-  mapMarkerView(place: TripPlaceInfo): google.maps.MarkerOptions {
+  markerRoadMapStatus = new Map<string, string>([
+    ['active', 'red'],
+    ['inactive', 'blue'],
+    ['visited', 'grey'],
+  ]);
+
+  mapMarkerView(roadPart: RoadPart): google.maps.MarkerOptions {
     return {
-      title: place.place.name,
+      title: roadPart.tripPlaceInfo.place.name,
       icon: {
-        url: `https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_blue${place.order}.png`,
+        url: `https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_${this.markerRoadMapStatus.get(
+          roadPart.status
+        )}${roadPart.order}.png`,
       },
     };
   }
 
   directionsOptions(): google.maps.DirectionsRendererOptions {
-    return { markerOptions: { visible: false } };
+    return {
+      markerOptions: { visible: false },
+    };
   }
 }

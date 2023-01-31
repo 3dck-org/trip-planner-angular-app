@@ -1,15 +1,29 @@
-<mat-card  class="mat-elevation-z0">
-  <tp-dashboard-trip-element  [journeyMode]="true" [trip]="(journey$ | async)?.trip"></tp-dashboard-trip-element>
+<mat-card class="mat-elevation-z0">
+  <tp-dashboard-trip-element [journeyMode]="true" [trip]="(journey$ | async)?.trip"></tp-dashboard-trip-element>
   <mat-card-content class="road-map">
     <mat-vertical-stepper
       [linear]="true"
       *ngIf="(journey$ | async)?.trip?.trip_place_infos !== undefined"
     >
       <mat-step (click)="updateSelectedPlace(placeInfo)"
-        *ngFor="let placeInfo of (journey$ | async)?.trip?.trip_place_infos"
+                *ngFor="let placeInfo of (journey$ | async)?.trip?.trip_place_infos"
       >
-        <ng-template matStepLabel>{{ placeInfo.place.name }}</ng-template>
-        <ng-template matStepContent><tp-roadmap-place-description [place]="placeInfo.place"></tp-roadmap-place-description></ng-template>
+        <ng-template matStepLabel>{{ placeInfo.place.name }}
+          <span *ngIf="(journey$|async) as journey">
+               <button class="action-place-button" *ngIf="placeStatus(journey,placeInfo.place_id)==='inactive'"
+                       (click)="updateStartStatus(journey,placeInfo)" mat-stroked-button>Start
+          </button>
+          </span>
+          <button class="action-place-button" *ngIf="placeStatus((journey$ | async),placeInfo.place_id)==='active'"
+                  disabled mat-stroked-button>Active
+          </button>
+          <button class="action-place-button" *ngIf="placeStatus((journey$ | async),placeInfo.place_id)==='visited'"
+                  disabled mat-stroked-button>Visited
+          </button>
+        </ng-template>
+        <ng-template matStepContent>
+          <tp-roadmap-place-description [place]="placeInfo.place"></tp-roadmap-place-description>
+        </ng-template>
       </mat-step>
     </mat-vertical-stepper>
   </mat-card-content>

@@ -5,7 +5,9 @@ export interface RoadPart {
   mapMarker: MapMarker;
   startPoint: Point;
   endPoint: Point;
-  place: TripPlaceInfo;
+  tripPlaceInfo: TripPlaceInfo;
+  order: number;
+  status: string;
 }
 
 export interface MapMarker {}

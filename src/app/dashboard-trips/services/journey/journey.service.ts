@@ -27,4 +27,11 @@ export class JourneyService {
     <Observable<Journey>>(
       this.http.get(`${environment.API_URL}/api/v1/current_journey`)
     );
+
+  updatePlaceStatus$ = (journeyId: number, placeId: number, status: string) =>
+    this.http.put(`${environment.API_URL}/api/v1/update_place_status`, {
+      journey_id: journeyId,
+      place_id: placeId,
+      status: status,
+    });
 }

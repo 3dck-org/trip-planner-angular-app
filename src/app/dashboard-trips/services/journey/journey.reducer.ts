@@ -22,6 +22,7 @@ export const initialState: State = {
     end_at: null,
     created_at: null,
     updated_at: null,
+    journey_place_infos: [],
   },
 };
 
@@ -58,7 +59,7 @@ export const getJourney = (state: State): Journey => state.journey.journey;
 export const getRoadParts = (state: State): RoadPart[] => {
   const roadParts: RoadPart[] = [];
   // @ts-ignore
-  let journey = state.journey.journey;
+  let journey: Journey = state.journey.journey;
   if (!journey || !journey.trip) return [];
   let tripPlaceInfos = journey.trip?.trip_place_infos;
   if (tripPlaceInfos) {
@@ -70,9 +71,13 @@ export const getRoadParts = (state: State): RoadPart[] => {
       if (second == tripPlaceInfos.length) {
         let firstPlaceInfo = tripPlaceInfos[first];
         let roadPart = {
-          place: firstPlaceInfo,
+          tripPlaceInfo: firstPlaceInfo,
           startPoint: firstPlaceInfo.place.point,
           endPoint: {},
+          status: journey.journey_place_infos.find(
+            (jour) => jour.place_id === firstPlaceInfo.place_id
+          )?.status,
+          order: tripPlaceInfos[first].order,
           mapMarker: {},
         } as RoadPart;
         roadParts.push(roadPart);
@@ -80,9 +85,13 @@ export const getRoadParts = (state: State): RoadPart[] => {
         let firstPlaceInfo = tripPlaceInfos[first];
         let secondPlaceInfo = tripPlaceInfos[second];
         let roadPart = {
-          place: firstPlaceInfo,
+          tripPlaceInfo: firstPlaceInfo,
           startPoint: firstPlaceInfo.place.point,
           endPoint: secondPlaceInfo.place.point,
+          status: journey.journey_place_infos.find(
+            (jour) => jour.place_id === firstPlaceInfo.place_id
+          )?.status,
+          order: tripPlaceInfos[first].order,
           mapMarker: {},
         } as RoadPart;
         roadParts.push(roadPart);

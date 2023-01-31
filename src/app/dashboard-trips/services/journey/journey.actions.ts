@@ -29,3 +29,8 @@ export const journeyStop = createAction(
 );
 
 export const journeyStopResponse = createAction('[Journey] Stop Response');
+
+export const updatePlaceStatus = createAction(
+  '[Journey] Update Place Status',
+  props<{ journeyId: number; placeId: number; status: string }>()
+);

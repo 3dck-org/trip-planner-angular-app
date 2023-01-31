@@ -1,4 +1,3 @@
-import { Place } from '../../dashboard-trips/interfaces/place';
 import { TripPlaceInfo } from '../../dashboard-trips/interfaces/trip-place-info';
 
 export interface PlaceMapMarker {
