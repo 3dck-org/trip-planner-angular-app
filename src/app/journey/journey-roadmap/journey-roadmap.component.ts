@@ -55,7 +55,6 @@ export class JourneyRoadmapComponent implements AfterViewInit {
     journey.journey_place_infos
       .filter((value) => value.status === 'active')
       .forEach((val) => {
-        console.log('active');
         this.journeyStore.dispatch(
           JourneyActions.updatePlaceStatus({
             journeyId: journey.id !== null ? journey.id : -1,
