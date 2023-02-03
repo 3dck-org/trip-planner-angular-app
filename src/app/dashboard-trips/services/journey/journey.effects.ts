@@ -60,6 +60,7 @@ export class JourneyEffects {
       exhaustMap((action) =>
         this.journeyService.stopJourney$(action.journeyId).pipe(
           map((journey) => JourneyActions.journeyStopResponse()),
+          map(() => JourneyActions.currentJourney()),
           catchError((error) => of(JourneyActions.error({ error })))
         )
       ),

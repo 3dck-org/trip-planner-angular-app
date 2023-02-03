@@ -2,8 +2,10 @@
   class="container mat-elevation-z0"
   hideToggle
   *ngIf="(_journeyMode && _trip) || _journeyMode === false"
-  [expanded]="_journeyMode === true || (selectedJourney$ | async)?.trip?.id===_trip.id"
-  [disabled]="(selectedJourney$ | async)?.trip?.id===_trip.id"
+  [expanded]="
+    _journeyMode === true || (selectedJourney$ | async)?.trip?.id === _trip.id
+  "
+  [disabled]="(selectedJourney$ | async)?.trip?.id === _trip.id"
   [ngClass]="
     _trip && _trip.id === (selectedJourney$ | async)?.trip?.id
       ? 'journey-active'
@@ -20,7 +22,7 @@
   >
     <mat-panel-title>
       <img class="image" [src]="_trip!.image_url"
-      /></mat-panel-title>
+    /></mat-panel-title>
     <mat-panel-description>
       <div class="title">
         <h2>
@@ -56,10 +58,9 @@
     <h2>Distance:</h2>
     <h4>{{ _trip!.distance }} meters</h4>
     <h2>Duration:</h2>
-    <h4>{{ _trip!.duration / 60 }} minutes</h4>
+    <h4>{{ _trip!.duration / 60 | round }} minutes</h4>
     <h2>Author info:</h2>
     <h4>Created at: {{ _trip!.created_at | date }}</h4>
-    <h4>Updated at: {{ _trip!.updated_at | date }}</h4>
     <h2>Categories:</h2>
     <div id="categories">
       <button mat-icon-button matSuffix>
@@ -83,7 +84,10 @@
   </div>
   <div>
     <button
-      *ngIf="_journeyMode === false && _trip.id !== (selectedJourney$ | async)?.trip?.id"
+      *ngIf="
+        _journeyMode === false &&
+        _trip.id !== (selectedJourney$ | async)?.trip?.id
+      "
       mat-flat-button
       color="primary"
       class="journey-button"

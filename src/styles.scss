@@ -30,3 +30,12 @@ body {
   border-radius: 10px;
   border: 1px solid #ffffff;
 }
+.snackButton {
+  color: white !important;
+}
+.snackPanel{
+background: #3f51b5;
+  .mat-simple-snackbar-action {
+    color: white !important;
+  }
+}

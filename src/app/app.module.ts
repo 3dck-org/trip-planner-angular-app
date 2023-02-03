@@ -28,7 +28,10 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { DashboardMapComponent } from './dashboard-map/dashboard-map/dashboard-map.component';
 import { DashboardTripsComponent } from './dashboard-trips/dashboard-trips/dashboard-trips.component';
 import { DashboardSearchComponent } from './dashboard-search/dashboard-search/dashboard-search.component';
-import { DashboardTripElementComponent } from './dashboard-trip-element/dashboard-trip-element/dashboard-trip-element.component';
+import {
+  DashboardTripElementComponent,
+  RoundPipe,
+} from './dashboard-trip-element/dashboard-trip-element/dashboard-trip-element.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { TripEffects } from './dashboard-trips/services/trip.effects';
 import { journeyReducer } from './dashboard-trips/services/journey/journey.reducer';
@@ -51,6 +54,7 @@ import { TripDescriptionComponent } from './trip-creator/trip-description/trip-d
 import { RoadmapCreatorComponent } from './trip-creator/roadmap-creator/roadmap-creator.component';
 import { RoadmapPlaceCreateFormComponent } from './trip-creator/roadmap-place-create-form/roadmap-place-create-form.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -73,6 +77,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     TripDescriptionComponent,
     RoadmapCreatorComponent,
     RoadmapPlaceCreateFormComponent,
+    RoundPipe,
   ],
   imports: [
     BrowserModule,
@@ -115,6 +120,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    MatSnackBar,
   ],
   bootstrap: [AppComponent],
 })

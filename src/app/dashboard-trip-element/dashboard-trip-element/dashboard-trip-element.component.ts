@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  Pipe,
+  PipeTransform,
+} from '@angular/core';
 import { Trip } from '../../dashboard-trips/interfaces/trip';
 import { Store } from '@ngrx/store';
 import * as JourneyActions from '../../dashboard-trips/services/journey/journey.actions';
@@ -46,5 +52,11 @@ export class DashboardTripElementComponent {
 
   updateFavorite(trip: Trip) {
     this.store.dispatch(TripActions.changeFavoriteStatus({ trip }));
+  }
+}
+@Pipe({ name: 'round' })
+export class RoundPipe implements PipeTransform {
+  transform(input: number) {
+    return Math.floor(input);
   }
 }

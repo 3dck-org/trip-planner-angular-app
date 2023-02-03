@@ -31,8 +31,8 @@ export class DashboardMapComponent {
   }
 
   public center: google.maps.LatLng = new google.maps.LatLng({
-    lat: 0,
-    lng: 0,
+    lat: 52.237049,
+    lng: 21.017532,
   });
 
   @ViewChild(GoogleMap) googleMap!: GoogleMap;
@@ -79,6 +79,7 @@ export class DashboardMapComponent {
   direction(roadPart: RoadPart[]) {
     if (!roadPart || roadPart.length <= 1) {
       this.routeLine.next([]);
+      console.log('++');
       return;
     }
 

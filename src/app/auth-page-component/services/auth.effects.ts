@@ -5,6 +5,8 @@ import { catchError, exhaustMap, map, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { LoadingStateService } from '../../core/services/loading-state.service';
+import { SimpleSnackBar } from '@angular/material/snack-bar';
+import { SnackBarService } from '../../core/services/snack-bar.service';
 
 @Injectable()
 export class AuthEffects {
@@ -73,6 +75,15 @@ export class AuthEffects {
       )
     )
   );
+
+  registerFailed$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(AuthActions.registerFailure),
+        tap(({ error }) => this.snackBarService.createSnack('Bad Credentials'))
+      ),
+    { dispatch: false }
+  );
   registerSuccess$ = createEffect(
     () =>
       this.actions$.pipe(
@@ -106,6 +117,7 @@ export class AuthEffects {
     private actions$: Actions,
     private authService: AuthService,
     private router: Router,
-    private spinner: LoadingStateService
+    private spinner: LoadingStateService,
+    private snackBarService: SnackBarService
   ) {}
 }
