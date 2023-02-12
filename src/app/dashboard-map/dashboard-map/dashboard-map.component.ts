@@ -7,10 +7,10 @@ import { Store } from '@ngrx/store';
 import { GoogleMap, MapDirectionsService } from '@angular/google-maps';
 import { RoadPart } from '../../core/interfaces/road-part';
 import { SelectedPlaceInfoService } from '../../journey/services/selected-place-info.service';
-import { TripPlaceInfo } from '../../dashboard-trips/interfaces/trip-place-info';
 import { BehaviorSubject } from 'rxjs';
 import { PlaceMapMarker } from '../../core/interfaces/place-map-marker';
 import TravelMode = google.maps.TravelMode;
+import { MapRouteLineService } from '../../dashboard/services/map-route-line.service';
 
 @Component({
   selector: 'tp-dashboard-map',
@@ -21,10 +21,7 @@ import TravelMode = google.maps.TravelMode;
 export class DashboardMapComponent {
   zoom = 15;
 
-  private routeLine = new BehaviorSubject<google.maps.DirectionsResult[]>([]);
   public mapMarkers: PlaceMapMarker[] = [];
-  routeLine$ = this.routeLine.asObservable();
-
   public onMapReady(map: google.maps.Map): void {
     map.panTo(this.center);
     this.changeZoom(15);
@@ -60,7 +57,8 @@ export class DashboardMapComponent {
   constructor(
     readonly store: Store<State>,
     readonly selectedPlaceInfoService: SelectedPlaceInfoService,
-    readonly mapDirectionsService: MapDirectionsService
+    readonly mapDirectionsService: MapDirectionsService,
+    readonly mapRouteLineService: MapRouteLineService
   ) {
     this.store.select(getRoadParts).subscribe((res) => {
       this.direction(res);
@@ -78,8 +76,7 @@ export class DashboardMapComponent {
 
   direction(roadPart: RoadPart[]) {
     if (!roadPart || roadPart.length <= 1) {
-      this.routeLine.next([]);
-      console.log('++');
+      this.mapRouteLineService.routeLine = [];
       return;
     }
 
@@ -117,8 +114,8 @@ export class DashboardMapComponent {
       })
       .subscribe((res) => {
         if (res.result) {
-          this.routeLine.next([]);
-          this.routeLine.next([res.result]);
+          this.mapRouteLineService.routeLine = [];
+          this.mapRouteLineService.routeLine = [res.result];
         }
       });
   }

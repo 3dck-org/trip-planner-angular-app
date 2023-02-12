@@ -1,5 +1,5 @@
 ::ng-deep#search {
-  width: 95%;
+  width: 90%;
   margin: 0 1rem 0 1rem;
   height: 60%;
   font-size: 1.1rem;
@@ -25,3 +25,34 @@
 .cat-restaurant {
   color: tomato;
 }
+
+.category-toggles{
+  display: flex;
+  justify-content: space-between;
+}
+
+.category-toggle{
+  width: 100%;
+}
+
+.search-radius{
+  display: flex;
+
+}
+
+.range-slider{
+  width: 100%;
+}
+
+.range-label{
+  font-size: 1.1rem;
+  margin-top: 0.7rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  color:gray;
+
+}
+.iconx2{
+  transform: scale(1.5);
+}
+

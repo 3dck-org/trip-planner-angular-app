@@ -1,26 +1,59 @@
 <form [formGroup]="searchField">
   <mat-form-field id="search" floatLabel="never">
-    <input matInput placeholder="Location" formControlName="searchParam" />
-    <button mat-icon-button matSuffix (click)="search()">
-      <mat-icon>search</mat-icon>
-    </button>
-    <button mat-icon-button (click)="getLocation()" matSuffix>
-      <mat-icon>location_on</mat-icon>
-    </button>
+    <input
+      matInput
+      ngx-google-places-autocomplete
+      [options]="searchOptions"
+      id="searchinput"
+      #placesRef="ngx-places"
+      (onAddressChange)="handleAddressChange($event)"
+      placeholder="Location"
+      formControlName="searchParam"
+    />
+      <button mat-icon-button matSuffix class="iconx2" (click)="search()">
+        <mat-icon>search</mat-icon>
+      </button>
+      <button mat-icon-button class="iconx2" (click)="byLocation()" matSuffix>
+        <mat-icon>location_on</mat-icon>
+      </button>
   </mat-form-field>
 </form>
-
-<div id="categories">
-  <button mat-icon-button matSuffix>
+<mat-button-toggle-group
+  class="category-toggles"
+  name="category"
+  aria-label="Categories"
+  multiple
+  [(value)]="category_selected"
+>
+  <mat-button-toggle class="category-toggle" value="restaurant">
     <mat-icon class="cat-restaurant">restaurant</mat-icon>
-  </button>
-  <button mat-icon-button matSuffix>
-    <mat-icon class="cat-drink">local_drink</mat-icon>
-  </button>
-  <button mat-icon-button matSuffix>
-    <mat-icon class="cat-museums">school</mat-icon>
-  </button>
-  <button mat-icon-button matSuffix>
-    <mat-icon class="cat-relax">spa</mat-icon>
-  </button>
+  </mat-button-toggle>
+  <mat-button-toggle class="category-toggle" value="fort">
+    <mat-icon class="cat-museums">fort</mat-icon>
+  </mat-button-toggle>
+  <mat-button-toggle class="category-toggle" value="local_grocery_store">
+    <mat-icon class="cat-relax">local_grocery_store</mat-icon>
+  </mat-button-toggle>
+  <mat-button-toggle class="category-toggle" value="nightlife">
+    <mat-icon class="cat-restaurant">nightlife</mat-icon>
+  </mat-button-toggle>
+  <mat-button-toggle class="category-toggle" value="local_hospital">
+    <mat-icon class="cat-drink">local_hospital</mat-icon>
+  </mat-button-toggle>
+</mat-button-toggle-group>
+
+<div class="search-radius">
+  <label class="range-label">Range({{ range }}m):</label>
+  <mat-slider
+    class="range-slider"
+    min="500"
+    max="15000"
+    step="500"
+    color="primary"
+    showTickMarks="true"
+    discrete
+    [displayWith]="formatLabel"
+    [(ngModel)]="range"
+  >
+  </mat-slider>
 </div>

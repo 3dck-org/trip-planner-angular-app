@@ -12,7 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { OverlayModule } from '@angular/cdk/overlay';
@@ -55,6 +55,9 @@ import { RoadmapCreatorComponent } from './trip-creator/roadmap-creator/roadmap-
 import { RoadmapPlaceCreateFormComponent } from './trip-creator/roadmap-place-create-form/roadmap-place-create-form.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatSliderModule } from '@angular/material/slider';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 @NgModule({
   declarations: [
@@ -117,6 +120,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatSidenavModule,
     MatListModule,
     DragDropModule,
+    MatButtonToggleModule,
+    MatSliderModule,
+    FormsModule,
+    GooglePlaceModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

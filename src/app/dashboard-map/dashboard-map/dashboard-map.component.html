@@ -4,6 +4,6 @@
               [options]="marker.options ">
 
   </map-marker>
-  <map-directions-renderer *ngFor="let line of routeLine$ |async " [directions]="line" [options]="directionsOptions()">
+  <map-directions-renderer *ngFor="let line of mapRouteLineService.routeLine$ |async " [directions]="line" [options]="directionsOptions()">
   </map-directions-renderer>
 </google-map>

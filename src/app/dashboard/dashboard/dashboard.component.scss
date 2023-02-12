@@ -4,14 +4,14 @@
 
 .container {
   display: flex;
-  min-height: 95vh;
+  min-height: 94vh;
   flex-direction: column;
   margin: 0;
   overflow-y: auto;
 }
 
 .dashboard {
-  max-height: 95vh;
+  max-height: 94vh;
 }
 
 #dashboard {
@@ -44,6 +44,7 @@ tp-dashboard-map {
   border-radius: 5px;
   margin-bottom: 1rem;
   border: 1px dotted #b0b0b0;
+  background: white;
 }
 
 #routes > tp-dashboard-trips {
