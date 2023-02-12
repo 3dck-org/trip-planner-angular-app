@@ -45,6 +45,7 @@ export class DashboardSearchComponent {
     } else {
       console.log('No support for geolocation');
     }
+    this.sendRequest();
   }
 
   formatLabel(value: number): string {
@@ -52,6 +53,11 @@ export class DashboardSearchComponent {
   }
 
   search() {
+    this.sendRequest();
+  }
+
+  sendRequest() {
+    console.log('CHANGE');
     let string_categories = '';
     this.category_selected.forEach((cat) => {
       let strings = this.categoryIconBindingMap.get(cat);

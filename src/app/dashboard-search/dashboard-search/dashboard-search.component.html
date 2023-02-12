@@ -10,12 +10,12 @@
       placeholder="Location"
       formControlName="searchParam"
     />
-      <button mat-icon-button matSuffix class="iconx2" (click)="search()">
-        <mat-icon>search</mat-icon>
-      </button>
-      <button mat-icon-button class="iconx2" (click)="byLocation()" matSuffix>
-        <mat-icon>location_on</mat-icon>
-      </button>
+    <button mat-icon-button matSuffix class="iconx2" (click)="search()">
+      <mat-icon>search</mat-icon>
+    </button>
+    <button mat-icon-button class="iconx2" (click)="byLocation()" matSuffix>
+      <mat-icon>location_on</mat-icon>
+    </button>
   </mat-form-field>
 </form>
 <mat-button-toggle-group
@@ -23,9 +23,13 @@
   name="category"
   aria-label="Categories"
   multiple
+  (change)="this.sendRequest()"
   [(value)]="category_selected"
 >
-  <mat-button-toggle class="category-toggle" value="restaurant">
+  <mat-button-toggle
+    class="category-toggle"
+    value="restaurant"
+  >
     <mat-icon class="cat-restaurant">restaurant</mat-icon>
   </mat-button-toggle>
   <mat-button-toggle class="category-toggle" value="fort">
@@ -52,6 +56,7 @@
     color="primary"
     showTickMarks="true"
     discrete
+    (change)="this.sendRequest()"
     [displayWith]="formatLabel"
     [(ngModel)]="range"
   >
