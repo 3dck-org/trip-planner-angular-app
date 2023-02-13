@@ -23,25 +23,29 @@
   name="category"
   aria-label="Categories"
   multiple
-  (change)="this.sendRequest()"
   [(value)]="category_selected"
 >
   <mat-button-toggle
     class="category-toggle"
     value="restaurant"
+    (change)="this.sendRequest()"
   >
     <mat-icon class="cat-restaurant">restaurant</mat-icon>
   </mat-button-toggle>
-  <mat-button-toggle class="category-toggle" value="fort">
+  <mat-button-toggle class="category-toggle" value="fort"
+                     (change)="this.sendRequest()">
     <mat-icon class="cat-museums">fort</mat-icon>
   </mat-button-toggle>
-  <mat-button-toggle class="category-toggle" value="local_grocery_store">
+  <mat-button-toggle class="category-toggle" value="local_grocery_store"
+                     (change)="this.sendRequest()">
     <mat-icon class="cat-relax">local_grocery_store</mat-icon>
   </mat-button-toggle>
-  <mat-button-toggle class="category-toggle" value="nightlife">
+  <mat-button-toggle class="category-toggle" value="nightlife"
+                     (change)="this.sendRequest()">
     <mat-icon class="cat-restaurant">nightlife</mat-icon>
   </mat-button-toggle>
-  <mat-button-toggle class="category-toggle" value="local_hospital">
+  <mat-button-toggle class="category-toggle" value="local_hospital"
+                     (change)="this.sendRequest()">
     <mat-icon class="cat-drink">local_hospital</mat-icon>
   </mat-button-toggle>
 </mat-button-toggle-group>

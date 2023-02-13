@@ -12,4 +12,5 @@ export interface Place {
   updated_at: Date;
   address: Address;
   category_dictionaries: CategoryDictionaries[];
+  google_maps_url: string;
 }
