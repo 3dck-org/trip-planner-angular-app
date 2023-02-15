@@ -31,6 +31,7 @@ export class TripEffects {
       exhaustMap((action) =>
         this.tripService.trip_create$(action.trip).pipe(
           map(() => TripActions.noneRespValue()),
+          map(() => TripActions.tripsListRequest()),
           catchError((error) => of(TripActions.error({ error })))
         )
       ),
