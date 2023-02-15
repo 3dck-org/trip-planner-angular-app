@@ -4,13 +4,13 @@
 
 .container {
   display: flex;
-  min-height: 95vh;
+  min-height: 80vh;
   flex-direction: column;
   margin: 1rem;
 }
 
 mat-stepper {
-  height: 94vh;
+  height: 91vh;
 }
 
 mat-step {
@@ -19,4 +19,7 @@ mat-step {
 
 .stepper-content{
   margin: 1rem;
+}
+.category-toggle{
+  width: 100%;
 }

@@ -1,7 +1,9 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row class="header">
     <div class="part">
-
+      <a mat-icon-button (click)="drawer.toggle()" class="logo">
+        <mat-icon>menu</mat-icon>
+      </a>
     </div>
     <a mat-button routerLink="/" class="part">
       <mat-icon class="logo">map</mat-icon>
@@ -33,7 +35,11 @@
       </mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item class="nav-elem">
-        <button mat-flat-button  routerLink="create-trip" class="nav-elem-button">
+        <button
+          mat-flat-button
+          routerLink="create-trip"
+          class="nav-elem-button"
+        >
           Trip Creator
           <mat-icon class="nav-icon">add_circle_outline</mat-icon>
         </button>

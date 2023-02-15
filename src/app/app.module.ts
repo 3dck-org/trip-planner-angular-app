@@ -52,7 +52,6 @@ import { MatListModule } from '@angular/material/list';
 import { TripCreatorComponent } from './trip-creator/trip-creator/trip-creator.component';
 import { TripDescriptionComponent } from './trip-creator/trip-description/trip-description.component';
 import { RoadmapCreatorComponent } from './trip-creator/roadmap-creator/roadmap-creator.component';
-import { RoadmapPlaceCreateFormComponent } from './trip-creator/roadmap-place-create-form/roadmap-place-create-form.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -79,7 +78,6 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
     TripCreatorComponent,
     TripDescriptionComponent,
     RoadmapCreatorComponent,
-    RoadmapPlaceCreateFormComponent,
     RoundPipe,
   ],
   imports: [

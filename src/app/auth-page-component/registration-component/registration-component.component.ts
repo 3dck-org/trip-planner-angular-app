@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthStateService } from '../services/auth-state.service';
 import { LoadingStateService } from '../../core/services/loading-state.service';
@@ -10,7 +10,7 @@ import { Store } from '@ngrx/store';
   templateUrl: './registration-component.component.html',
   styleUrls: ['./registration-component.component.scss'],
 })
-export class RegistrationComponentComponent implements OnInit {
+export class RegistrationComponentComponent {
   fg: FormGroup;
 
   constructor(
@@ -28,8 +28,6 @@ export class RegistrationComponentComponent implements OnInit {
       password: ['', Validators.required],
     });
   }
-
-  ngOnInit(): void {}
 
   register() {
     const credentials = {

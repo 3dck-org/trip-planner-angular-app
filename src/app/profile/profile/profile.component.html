@@ -1,46 +1,57 @@
 <div class="container">
   <div id="profile">
     <div id="empty-pic-menu">
-      <img class="left-side-image" src="../../../assets/backbround-left-side-image.png"/>
+      <img
+        class="left-side-image"
+        src="../../../assets/backbround-left-side-image.png"
+      />
     </div>
     <div id="info">
       <mat-card class="mat-card-profile">
         <mat-card-header>
           <mat-card-title-group>
             <div>
-              <img class="avatar" width="250" height="250"
-                   [ngSrc]="profileImage()!==''?profileImage():
-                   'https://thumbs.dreamstime.com/b/portrait-young-man-beard-hair-style-male-avatar-vector-portrait-young-man-beard-hair-style-male-avatar-105082137.jpg'"
-              >
+              <img
+                class="avatar"
+                width="250"
+                height="250"
+                [ngSrc]="
+                  profileImage() !== ''
+                    ? profileImage()
+                    : 'https://thumbs.dreamstime.com/b/portrait-young-man-beard-hair-style-male-avatar-vector-portrait-young-man-beard-hair-style-male-avatar-105082137.jpg'
+                "
+              />
             </div>
             <div class="profile-main-info">
               <div class="info-field">
                 <div class="field-title">Name</div>
-                <div class="field-value">{{(profile$|async)?.name}}</div>
+                <div class="field-value">{{ (profile$ | async)?.name }}</div>
               </div>
               <div class="info-field">
                 <div class="field-title">Surname</div>
-                <div class="field-value">{{(profile$|async)?.surname}}</div>
+                <div class="field-value">{{ (profile$ | async)?.surname }}</div>
               </div>
               <div class="info-field">
                 <div class="field-title">Login</div>
-                <div class="field-value">{{(profile$|async)?.login}}</div>
-
+                <div class="field-value">{{ (profile$ | async)?.login }}</div>
               </div>
               <div class="info-field">
                 <div class="field-title">Birthday</div>
-                <div class="field-value">{{(profile$|async)?.birthday}}</div>
+                <div class="field-value">
+                  {{ (profile$ | async)?.birthday }}
+                </div>
               </div>
               <div class="info-field">
                 <div class="field-title">Email</div>
-                <div class="field-value">{{(profile$|async)?.email}}</div>
+                <div class="field-value">{{ (profile$ | async)?.email }}</div>
               </div>
             </div>
           </mat-card-title-group>
         </mat-card-header>
       </mat-card>
       <mat-card class="interests-container">
-        <mat-card-title class="interests-title">Interests
+        <mat-card-title class="interests-title"
+          >Interests
           <mat-icon class="interests-icon">celebration</mat-icon>
         </mat-card-title>
         <mat-card-content class="interests-content">
@@ -54,24 +65,48 @@
       </mat-card>
 
       <mat-card>
-        <mat-card-title class="favorite-title">Favorites
+        <mat-card-title class="favorite-title"
+          >Favorites
           <mat-icon class="favorite-icon">star</mat-icon>
         </mat-card-title>
         <mat-card-content class="favorite-container">
-          <mat-card class="mat-card-favorite-elem" *ngFor="let trip of favoriteTrips$ | async; ">
+          <mat-card
+            class="mat-card-favorite-elem"
+            *ngFor="let trip of favoriteTrips$ | async"
+          >
             <mat-card-title-group class="favorite-card-title-group">
               <div>
-                <img class="place-img"
-                     [src]="trip.image_url"
-                     alt="place-img">
+                <img class="place-img" [src]="trip.image_url" alt="place-img" />
               </div>
               <div class="place-title">
                 <h2>{{ trip!.name }}</h2>
-                <p>Created at: {{ trip!.created_at | date:'short' }}</p>
+                <p>Created at: {{ trip!.created_at | date: "short" }}</p>
               </div>
             </mat-card-title-group>
           </mat-card>
-
+        </mat-card-content>
+      </mat-card>
+      <mat-card style="margin-top: 1rem">
+        <mat-card-title class="favorite-title"
+        >Your Trips
+          <mat-icon class="favorite-icon">upload</mat-icon>
+        </mat-card-title>
+        <mat-card-content class="favorite-container">
+          <mat-card
+            class="mat-card-favorite-elem"
+            *ngFor="let trip of userTrips$ | async"
+          >
+            <mat-card-title-group class="favorite-card-title-group">
+              <div>
+                <img class="place-img" [src]="trip.image_url" alt="place-img" />
+              </div>
+              <div class="place-title">
+                <h2>{{ trip!.name }}</h2>
+                <p>Created at: {{ trip!.created_at | date: "short" }}</p>
+              </div>
+              <button class="remove-button" (click)="deleteTrip(trip.id)" mat-icon-button><mat-icon>close</mat-icon></button>
+            </mat-card-title-group>
+          </mat-card>
         </mat-card-content>
       </mat-card>
     </div>

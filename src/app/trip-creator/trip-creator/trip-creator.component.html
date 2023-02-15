@@ -1,14 +1,10 @@
 <div class="container">
   <mat-stepper #stepper>
-    <mat-step label="Trip Description">
+    <mat-step label="Places">
       <tp-roadmap-creator class="stepper-content"></tp-roadmap-creator>
     </mat-step>
-    <mat-step label="Places">
+    <mat-step label="Trip Description">
       <tp-trip-description class="stepper-content"></tp-trip-description>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Summery</ng-template>
-      <p>You are now done.</p>
     </mat-step>
   </mat-stepper>
 </div>

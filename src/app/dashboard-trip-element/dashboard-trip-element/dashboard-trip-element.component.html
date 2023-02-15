@@ -61,15 +61,7 @@
     <h4>{{ _trip!.duration / 60 | round }} minutes</h4>
     <h2>Author info:</h2>
     <h4>Created at: {{ _trip!.created_at | date }}</h4>
-    <h2>Categories:</h2>
-    <div id="categories">
-      <button mat-icon-button matSuffix>
-        <mat-icon class="cat-drink">local_drink</mat-icon>
-      </button>
-      <button mat-icon-button matSuffix>
-        <mat-icon class="cat-relax">spa</mat-icon>
-      </button>
-    </div>
+
   </div>
   <div *ngIf="selectedJourney$ | async as journey">
     <button
@@ -93,7 +85,7 @@
       class="journey-button"
       (click)="createJourney(_trip.id)"
     >
-      Create Journey
+      Start Journey
     </button>
   </div>
 </mat-expansion-panel>

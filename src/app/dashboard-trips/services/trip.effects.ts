@@ -4,9 +4,9 @@ import { catchError, exhaustMap, map, of, tap } from 'rxjs';
 import * as TripActions from './trip.actions';
 import { LoadingStateService } from '../../core/services/loading-state.service';
 import { TripService } from './trip.service';
-import { filteredListRequest, tripsListRequest } from './trip.actions';
 import { HttpParams } from '@angular/common/http';
 import { TripSearchParams } from '../../core/interfaces/trip-search-params';
+import { noneRespValue } from './trip.actions';
 
 @Injectable()
 export class TripEffects {
@@ -17,6 +17,33 @@ export class TripEffects {
       exhaustMap((action) =>
         this.tripService.tripList$().pipe(
           map((tripsList) => TripActions.tripListResponse({ tripsList })),
+          catchError((error) => of(TripActions.error({ error })))
+        )
+      ),
+      tap(() => this.spinner.hide())
+    )
+  );
+
+  tripsCreate = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TripActions.createTrip),
+      tap(() => this.spinner.show()),
+      exhaustMap((action) =>
+        this.tripService.trip_create$(action.trip).pipe(
+          map(() => TripActions.noneRespValue()),
+          catchError((error) => of(TripActions.error({ error })))
+        )
+      ),
+      tap(() => this.spinner.hide())
+    )
+  );
+  tripsDelete = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TripActions.deleteTrip),
+      tap(() => this.spinner.show()),
+      exhaustMap((action) =>
+        this.tripService.trip_delete$(action.tripId).pipe(
+          map(() => TripActions.noneRespValue()),
           catchError((error) => of(TripActions.error({ error })))
         )
       ),

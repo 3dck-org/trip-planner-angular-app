@@ -1,3 +1,83 @@
-<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-  <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie}}</div>
+<div class="container">
+  <div id="places">
+    <div id="places-list">
+      <mat-card>
+        <form [formGroup]="placeForm">
+          <mat-form-field class="default-input">
+            <mat-label>Place Name</mat-label>
+            <input formControlName="name" matInput />
+          </mat-form-field>
+          <mat-form-field class="description-input">
+            <mat-label>Description</mat-label>
+            <textarea formControlName="description" matInput></textarea>
+          </mat-form-field>
+          <mat-form-field class="search-input" floatLabel="never">
+            <input
+              matInput
+              ngx-google-places-autocomplete
+              [options]="searchOptions"
+              id="search-input"
+              class="search-input"
+              #placesRef="ngx-places"
+              (onAddressChange)="handleAddressChange($event)"
+              placeholder="Location"
+              formControlName="address"
+            />
+          </mat-form-field>
+          <div><span class="category-label">Select categories:</span></div>
+          <mat-button-toggle-group
+            class="category-toggles"
+            name="category"
+            aria-label="Categories"
+            multiple
+            [(value)]="category_selected"
+          >
+            <mat-button-toggle class="category-toggle" value="restaurant">
+              <mat-icon class="cat-restaurant">restaurant</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle class="category-toggle" value="fort">
+              <mat-icon class="cat-museums">fort</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle
+              class="category-toggle"
+              value="local_grocery_store"
+            >
+              <mat-icon class="cat-relax">local_grocery_store</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle class="category-toggle" value="nightlife">
+              <mat-icon class="cat-restaurant">nightlife</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle class="category-toggle" value="local_hospital">
+              <mat-icon class="cat-drink">local_hospital</mat-icon>
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+          <button
+            type="submit"
+            (click)="addEditPlace()"
+            [disabled]="!placeForm.valid"
+            class="button-add"
+            mat-raised-button
+            color="primary"
+          >
+            Add/Change
+          </button>
+        </form>
+      </mat-card>
+      <div cdkDropList class="list" (cdkDropListDropped)="drop($event)">
+        <div class="box" *ngFor="let place of places; let ind = index" cdkDrag>
+          {{ place.name }}
+          <div>
+            <button mat-icon-button (click)="deletePlace(ind)">
+              <mat-icon>close</mat-icon>
+            </button>
+            <button mat-icon-button (click)="editPlace(ind)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="map"><tp-dashboard-map> </tp-dashboard-map></div>
+  </div>
 </div>

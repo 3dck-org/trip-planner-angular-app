@@ -6,4 +6,6 @@ export interface Address {
   postalCode: string;
   created_at: string;
   updated_at: string;
+
+  city: string;
 }

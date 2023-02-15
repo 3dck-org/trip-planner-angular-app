@@ -1,9 +1,11 @@
 .container {
   width: 100%;
-  height: 60vh;
+  height: 80vh;
   flex-direction: row;
   margin: 0;
   display: flex;
+  overflow: hidden;
+
 }
 
 .description {
@@ -33,7 +35,8 @@
 }
 
 .mat-card {
-
+height: 60vh;
+  overflow: auto;
 }
 
 .trip-image {

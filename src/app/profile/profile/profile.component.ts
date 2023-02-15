@@ -21,7 +21,11 @@ export class ProfileComponent {
   profile$ = this.profileSubject.asObservable();
 
   favoriteTripsSubject = new BehaviorSubject<Trip[]>([]);
+  userTripsSubject = new BehaviorSubject<Trip[]>([]);
+
   favoriteTrips$ = this.favoriteTripsSubject.asObservable();
+
+  userTrips$ = this.userTripsSubject.asObservable();
 
   constructor(
     private storeProfile: Store<ProfileState>,
@@ -37,6 +41,11 @@ export class ProfileComponent {
     this.storeTrip.pipe(select(getTrips)).subscribe((res: Trip[]) => {
       if (res) {
         this.favoriteTripsSubject.next(res.filter((trip) => trip.favorite));
+        this.userTripsSubject.next(
+          res.filter(
+            (trip) => parseInt(trip.user_id) == this.profileSubject.value?.id
+          )
+        );
       }
     });
   }
@@ -44,5 +53,9 @@ export class ProfileComponent {
   profileImage(): string {
     let profileImage = this.profileSubject.getValue()?.image_url;
     return profileImage ? profileImage : '';
+  }
+
+  deleteTrip(id: number) {
+    this.storeTrip.dispatch(TripActions.deleteTrip({ tripId: id }));
   }
 }
