@@ -78,7 +78,9 @@ export class TripDescriptionComponent {
     createTripRequest.image_url = imageTripUrl ? imageTripUrl : '';
     createTripRequest.description = description ? description : '';
     createTripRequest.distance = distance ? distance : '';
-    createTripRequest.duration = duration ? duration : '';
+    createTripRequest.duration = duration
+      ? (parseInt(duration) * 60).toString()
+      : '';
     createTripRequest.places = createTripPlaceDtoList;
     this.tripStore.dispatch(
       TripActions.createTrip({ trip: createTripRequest })

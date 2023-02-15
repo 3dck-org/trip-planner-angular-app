@@ -91,7 +91,7 @@
         >Your Trips
           <mat-icon class="favorite-icon">upload</mat-icon>
         </mat-card-title>
-        <mat-card-content class="favorite-container">
+        <mat-card-content class="favorite-container" *ngIf=" (userTrips$ | async) !==[]">
           <mat-card
             class="mat-card-favorite-elem"
             *ngFor="let trip of userTrips$ | async"

@@ -10,6 +10,7 @@ import {
   State as TripState,
 } from '../../dashboard-trips/services/trip.reducer';
 import { Trip } from '../../dashboard-trips/interfaces/trip';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'tp-profile',
@@ -29,7 +30,8 @@ export class ProfileComponent {
 
   constructor(
     private storeProfile: Store<ProfileState>,
-    private storeTrip: Store<TripState>
+    private storeTrip: Store<TripState>,
+    private router: Router
   ) {
     this.storeProfile.dispatch(ProfileActions.getProfile());
     this.storeProfile.pipe(select(getProfile)).subscribe((res) => {
@@ -57,5 +59,7 @@ export class ProfileComponent {
 
   deleteTrip(id: number) {
     this.storeTrip.dispatch(TripActions.deleteTrip({ tripId: id }));
+
+    this.router.navigate(['/profile']);
   }
 }
