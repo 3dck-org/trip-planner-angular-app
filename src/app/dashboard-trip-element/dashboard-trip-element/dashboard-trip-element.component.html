@@ -21,8 +21,13 @@
     "
   >
     <mat-panel-title>
-      <img class="image" [src]="_trip!.image_url"
-    /></mat-panel-title>
+      <img class="image" [src]="_trip!.image_url" />
+      <span *ngIf="_trip.average_rating && _journeyMode === false" class="rating"
+        ><span class="rating-text"
+          >{{ _trip.average_rating | round }}/5</span
+        ></span
+      >
+    </mat-panel-title>
     <mat-panel-description>
       <div class="title">
         <h2>
@@ -61,7 +66,6 @@
     <h4>{{ _trip!.duration / 60 | round }} minutes</h4>
     <h2>Author info:</h2>
     <h4>Created at: {{ _trip!.created_at | date }}</h4>
-
   </div>
   <div *ngIf="selectedJourney$ | async as journey">
     <button

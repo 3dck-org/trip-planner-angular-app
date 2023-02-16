@@ -10,6 +10,8 @@ export interface Trip {
   created_at: Date;
   updated_at: Date;
   image_url: string;
+
+  average_rating: number;
   favorite: boolean;
   trip_place_infos: TripPlaceInfo[];
 }
