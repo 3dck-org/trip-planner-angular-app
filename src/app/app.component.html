@@ -10,9 +10,6 @@
       <a mat-button class="title disable-text-selection">Trip Planner</a>
     </a>
     <div class="part" *ngIf="router.url != '/auth'">
-      <a mat-icon-button routerLink="/achievements" class="account">
-        <mat-icon>emoji_events</mat-icon>
-      </a>
       <a mat-icon-button routerLink="/profile" class="account">
         <mat-icon>account_circle</mat-icon>
       </a>
@@ -50,5 +47,4 @@
     <router-outlet></router-outlet>
   </mat-drawer-content>
 </mat-drawer-container>
-
 <footer></footer>
