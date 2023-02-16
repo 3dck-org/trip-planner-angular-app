@@ -75,7 +75,9 @@ export class TripDescriptionComponent {
     let distance = this.tripDescription.controls['distance'].value;
     let duration = this.tripDescription.controls['duration'].value;
     createTripRequest.name = name ? name : '';
-    createTripRequest.image_url = imageTripUrl ? imageTripUrl : '';
+    createTripRequest.image_url = imageTripUrl
+      ? imageTripUrl
+      : 'https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png';
     createTripRequest.description = description ? description : '';
     createTripRequest.distance = distance ? distance : '';
     createTripRequest.duration = duration

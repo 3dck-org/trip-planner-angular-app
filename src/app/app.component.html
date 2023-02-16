@@ -1,7 +1,12 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row class="header">
     <div class="part">
-      <a mat-icon-button (click)="drawer.toggle()" class="logo">
+      <a
+        *ngIf="router.url !== '/auth'"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        class="logo"
+      >
         <mat-icon>menu</mat-icon>
       </a>
     </div>

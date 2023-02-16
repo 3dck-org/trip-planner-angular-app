@@ -22,7 +22,9 @@
   >
     <mat-panel-title>
       <img class="image" [src]="_trip!.image_url" />
-      <span *ngIf="_trip.average_rating && _journeyMode === false" class="rating"
+      <span
+        *ngIf="_trip.average_rating && _journeyMode === false"
+        class="rating"
         ><span class="rating-text"
           >{{ _trip.average_rating | round }}/5</span
         ></span
@@ -81,6 +83,7 @@
   <div>
     <button
       *ngIf="
+        (selectedJourney$ | async)?.id === null &&
         _journeyMode === false &&
         _trip.id !== (selectedJourney$ | async)?.trip?.id
       "
